@@ -1,4 +1,4 @@
-# 🚀 Quick Start Guide
+# Quick Start Guide
 
 Get the Task Management System running in 5 minutes!
 
@@ -15,7 +15,7 @@ cd backend
 dotnet run --project src/TaskManagement.API
 ```
 
-✅ Backend should be running at: **http://localhost:5000**
+Backend should be running at: **http://localhost:5000**
 
 ## Step 2: Frontend Setup
 
@@ -30,7 +30,7 @@ npm install
 npm run dev
 ```
 
-✅ Frontend should be running at: **http://localhost:5173**
+Frontend should be running at: **http://localhost:5173**
 
 ## Step 3: Open and Test
 
@@ -40,7 +40,7 @@ npm run dev
    - Password: `TestPassword123`
 3. Create, edit, and delete tasks!
 
-## 📋 Checklist
+## Checklist
 
 Before starting:
 - [ ] .NET 8 SDK installed
@@ -48,7 +48,7 @@ Before starting:
 - [ ] PostgreSQL running
 - [ ] Ports 5000 and 5173 available
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Backend won't start?
 ```bash
@@ -73,14 +73,14 @@ cd backend
 ./setup.sh
 ```
 
-## 🎉 You're Ready!
+## You're Ready!
 
 Now you can:
-- ✅ Create tasks
-- ✅ Update task status
-- ✅ Delete tasks
-- ✅ Filter by status
-- ✅ Test on mobile (responsive!)
+- Create tasks
+- Update task status
+- Delete tasks
+- Filter by status
+- Test on mobile (responsive!)
 
 For the interview presentation, see [PRESENTATION_GUIDE.md](./PRESENTATION_GUIDE.md)
 
@@ -90,4 +90,3 @@ For the interview presentation, see [PRESENTATION_GUIDE.md](./PRESENTATION_GUIDE
 - [Backend Setup](./backend/SETUP.md)
 - [Frontend Setup](./frontend/README.md)
 - [Full README](./README.md)
-

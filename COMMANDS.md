@@ -1,4 +1,4 @@
-# 🚀 Quick Command Reference
+#  Quick Command Reference
 
 Comandos essenciais para desenvolvimento diário.
 
@@ -15,9 +15,9 @@ just dev
 just stop
 ```
 
-## 📋 Todos os Comandos
+##  Todos os Comandos
 
-### 🎬 Início
+###  Início
 ```bash
 just                    # Lista todos os comandos
 just setup             # Setup completo (primeira vez)
@@ -25,20 +25,20 @@ just dev               # Inicia backend + frontend
 just stop              # Para todos os serviços
 ```
 
-### 🏗️ Build & Install
+###  Build & Install
 ```bash
 just install           # Instala dependências
 just build             # Build de tudo
 just clean             # Limpa artifacts
 ```
 
-### 🧪 Testes
+###  Testes
 ```bash
 just test              # Roda todos os testes (72 tests com banco isolado)
 just test-watch        # Auto-run nos changes
 ```
 
-### 🗄️ Database
+###  Database
 ```bash
 just db-up             # Inicia PostgreSQL
 just db-down           # Para PostgreSQL
@@ -46,26 +46,26 @@ just db-reset          # Reseta tudo (limpa + cria + seed)
 just db-shell          # CLI do PostgreSQL
 ```
 
-### 🎯 Backend
+###  Backend
 ```bash
 just backend-dev       # Backend em dev mode
 just backend-test      # Testes do backend
 ```
 
-### 🎨 Frontend
+###  Frontend
 ```bash
 just frontend-dev      # Frontend em dev mode
 just frontend-build    # Build para produção
 just frontend-lint     # Lint do código
 ```
 
-### 🎬 Demo
+###  Demo
 ```bash
 just demo              # Prepara ambiente de demo
 just info              # Info do projeto
 ```
 
-## 💡 Workflows Comuns
+##  Workflows Comuns
 
 ### Primeira Vez
 ```bash
@@ -95,7 +95,7 @@ just db-reset          # Limpa e recria
 just build             # Build de tudo
 ```
 
-## 🎯 Por Projeto
+##  Por Projeto
 
 ### Backend Only
 ```bash
@@ -130,7 +130,7 @@ just clean && just setup && just dev
 just demo && just dev
 ```
 
-## 📊 URLs
+##  URLs
 
 | Serviço | URL |
 |---------|-----|
@@ -161,7 +161,7 @@ just db-reset
 cd backend && just docker-logs
 ```
 
-## 📚 Mais Info
+##  Mais Info
 
 - [Guia Completo do Just](./JUSTFILE_GUIDE.md)
 - [README Principal](./README.md)

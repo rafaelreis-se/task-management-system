@@ -4,6 +4,10 @@
 Backend API for a task management system built with .NET and Clean Architecture principles.
 This is a technical interview project focusing on TDD, manual data access, and authentication.
 
+## Style Rules
+- DO NOT use emojis in code, comments, documentation, scripts, or any project files
+- Keep output messages clean and professional without emoji characters
+
 ## Technology Stack
 - .NET 10.0 / ASP.NET Core Web API
 - C# 12

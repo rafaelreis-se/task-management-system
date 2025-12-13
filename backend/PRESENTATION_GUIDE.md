@@ -200,20 +200,20 @@ Start API and test all endpoints live with Swagger
 
 ## Red Flags to Avoid
 
-❌ Don't say "I don't know" - say "Let me show you in the code"
-❌ Don't apologize for simplicity - it's a strength
-❌ Don't criticize your own code - explain decisions instead
-❌ Don't claim it's production-ready if it's not - be honest about scope
+ Don't say "I don't know" - say "Let me show you in the code"
+ Don't apologize for simplicity - it's a strength
+ Don't criticize your own code - explain decisions instead
+ Don't claim it's production-ready if it's not - be honest about scope
 
 ## Green Flags to Demonstrate
 
-✅ Understanding of Clean Architecture principles
-✅ TDD discipline (test-first approach)
-✅ Security consciousness (parameterized queries, BCrypt, JWT)
-✅ Code quality (SOLID principles, clean code)
-✅ Documentation (comprehensive docs)
-✅ Developer experience (justfile, automated test database, setup scripts)
-✅ Critical thinking with GenAI (show what you rejected)
+ Understanding of Clean Architecture principles
+ TDD discipline (test-first approach)
+ Security consciousness (parameterized queries, BCrypt, JWT)
+ Code quality (SOLID principles, clean code)
+ Documentation (comprehensive docs)
+ Developer experience (justfile, automated test database, setup scripts)
+ Critical thinking with GenAI (show what you rejected)
 
 ## Closing Statement
 
@@ -265,11 +265,11 @@ Before presenting:
 ## Good Luck!
 
 You've built a solid project with:
-- Clean Architecture ✅
-- TDD ✅
-- Manual implementations ✅
-- Professional tooling ✅
-- Complete documentation ✅
+- Clean Architecture 
+- TDD 
+- Manual implementations 
+- Professional tooling 
+- Complete documentation 
 
-You're ready! 🚀
+You're ready! 
 

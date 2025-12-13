@@ -1,6 +1,6 @@
 # Presentation Guide - Task Management System
 
-## 📋 Presentation Outline (15-20 minutes)
+##  Presentation Outline (15-20 minutes)
 
 ### 1. Introduction (2 minutes)
 - Name and brief background
@@ -234,30 +234,30 @@ just test
 
 ### 8. Q&A and Discussion (Remaining Time)
 
-## 🎯 Key Points to Emphasize
+##  Key Points to Emphasize
 
 ### Technical Excellence
-- ✅ Clean Architecture adherence
-- ✅ SOLID principles
-- ✅ Test-Driven Development
-- ✅ Security best practices
-- ✅ Modern tech stack
+-  Clean Architecture adherence
+-  SOLID principles
+-  Test-Driven Development
+-  Security best practices
+-  Modern tech stack
 
 ### Best Practices
-- ✅ Input validation
-- ✅ Error handling
-- ✅ Logging (where appropriate)
-- ✅ Code organization
-- ✅ Type safety with TypeScript
+-  Input validation
+-  Error handling
+-  Logging (where appropriate)
+-  Code organization
+-  Type safety with TypeScript
 
 ### User Experience
-- ✅ Intuitive interface
-- ✅ Responsive design
-- ✅ Loading states
-- ✅ Error messages
-- ✅ Success feedback
+-  Intuitive interface
+-  Responsive design
+-  Loading states
+-  Error messages
+-  Success feedback
 
-## 📊 Potential Questions & Answers
+##  Potential Questions & Answers
 
 ### Q: Why didn't you use Entity Framework?
 **A:** The exercise required demonstrating data access without EF or Dapper. This allowed me to show deeper understanding of database interactions, SQL, and connection management using Npgsql directly.
@@ -297,7 +297,7 @@ just test
 - Add email notifications
 - Enhance search and filtering
 
-## 🔧 Setup Before Presentation
+##  Setup Before Presentation
 
 ### Day Before
 - [ ] Test complete application flow
@@ -337,26 +337,26 @@ frontend/
 - [ ] GitHub repository (if applicable)
 - [ ] Terminal ready to run `just test`
 
-## 💡 Tips for Success
+##  Tips for Success
 
 ### Do's
-✅ Speak clearly and confidently
-✅ Explain your thought process
-✅ Show enthusiasm for the project
-✅ Be honest about challenges faced
-✅ Demonstrate problem-solving skills
-✅ Ask for clarification if needed
-✅ Show willingness to learn
+ Speak clearly and confidently
+ Explain your thought process
+ Show enthusiasm for the project
+ Be honest about challenges faced
+ Demonstrate problem-solving skills
+ Ask for clarification if needed
+ Show willingness to learn
 
 ### Don'ts
-❌ Rush through the demo
-❌ Skip over errors (explain them instead)
-❌ Over-complicate explanations
-❌ Criticize the requirements
-❌ Pretend to know something you don't
-❌ Focus only on code (show the running app!)
+ Rush through the demo
+ Skip over errors (explain them instead)
+ Over-complicate explanations
+ Criticize the requirements
+ Pretend to know something you don't
+ Focus only on code (show the running app!)
 
-## 🎬 Demo Script Template
+##  Demo Script Template
 
 ```
 1. "Let me start by showing you the running application..."
@@ -381,18 +381,18 @@ Consider having screenshots ready in case of technical difficulties:
 - Test results (72 tests passing)
 - Architecture diagram
 
-## 🎯 Success Metrics
+##  Success Metrics
 
 Your presentation will be successful if you:
-- ✅ Demonstrate all required features working
-- ✅ Explain architectural decisions clearly
-- ✅ Show understanding of best practices
-- ✅ Display confidence in your code
-- ✅ Handle questions professionally
-- ✅ Show GenAI tool proficiency
-- ✅ Convey passion for development
+-  Demonstrate all required features working
+-  Explain architectural decisions clearly
+-  Show understanding of best practices
+-  Display confidence in your code
+-  Handle questions professionally
+-  Show GenAI tool proficiency
+-  Convey passion for development
 
-Good luck with your presentation! 🚀
+Good luck with your presentation! 
 
 ---
 

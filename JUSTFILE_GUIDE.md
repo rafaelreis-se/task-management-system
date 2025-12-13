@@ -2,7 +2,7 @@
 
 Este projeto usa [Just](https://github.com/casey/just) como task runner para simplificar comandos comuns.
 
-## 📦 Instalação do Just
+##  Instalação do Just
 
 ### macOS
 ```bash
@@ -21,7 +21,7 @@ cargo install just
 scoop install just
 ```
 
-## 🚀 Comandos Principais (Raiz do Projeto)
+##  Comandos Principais (Raiz do Projeto)
 
 ### Início Rápido
 ```bash
@@ -83,7 +83,7 @@ just demo
 just info
 ```
 
-## 🎯 Comandos por Área
+##  Comandos por Área
 
 ### Backend Específico
 ```bash
@@ -113,7 +113,7 @@ just build             # Build
 just lint              # Lint
 ```
 
-## 📋 Workflow Típico
+##  Workflow Típico
 
 ### Primeira Vez (Setup)
 ```bash
@@ -149,7 +149,7 @@ just dev
 # Backend:  http://localhost:5000
 ```
 
-## 🔧 Estrutura de Justfiles
+##  Estrutura de Justfiles
 
 ```
 /justfile              # Comandos principais (monorepo)
@@ -157,7 +157,7 @@ just dev
 /frontend/justfile     # Comandos específicos do frontend
 ```
 
-## 💡 Dicas
+##  Dicas
 
 ### Ver todos os comandos
 ```bash
@@ -180,7 +180,7 @@ just help    # Mostra informações do projeto
 just info    # Alias para help
 ```
 
-## 🎨 Customização
+##  Customização
 
 Os justfiles são editáveis! Adicione seus próprios comandos:
 
@@ -220,7 +220,7 @@ just test
 just demo && just dev
 ```
 
-## 📚 Mais Informações
+##  Mais Informações
 
 - Just Documentation: https://just.systems
 - Project README: [README.md](./README.md)
@@ -233,5 +233,5 @@ just demo && just dev
 - Backend: `cd backend && dotnet run`
 - Frontend: `cd frontend && npm run dev`
 
-Mas o Just torna tudo mais simples e padronizado! 🚀
+Mas o Just torna tudo mais simples e padronizado! 
 

@@ -3,6 +3,10 @@
 ## Project Overview
 Simple React frontend for task management system. Keep it clean and functional.
 
+## Style Rules
+- DO NOT use emojis in code, comments, documentation, scripts, or any project files
+- Keep output messages clean and professional without emoji characters
+
 ## Stack
 - React 18 + TypeScript
 - Material UI

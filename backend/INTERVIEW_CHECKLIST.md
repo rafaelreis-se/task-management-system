@@ -116,26 +116,26 @@ just db-setup         # Should setup database (if needed)
 ## Key Talking Points
 
 ### Strengths to Highlight
-✅ "I followed TDD strictly - tests before implementation"
-✅ "Clean Architecture with proper separation of concerns"
-✅ "Manual implementations to demonstrate understanding"
-✅ "Security-first approach with parameterized queries"
-✅ "Professional tooling with justfile for DX"
-✅ "Comprehensive documentation for maintainability"
+ "I followed TDD strictly - tests before implementation"
+ "Clean Architecture with proper separation of concerns"
+ "Manual implementations to demonstrate understanding"
+ "Security-first approach with parameterized queries"
+ "Professional tooling with justfile for DX"
+ "Comprehensive documentation for maintainability"
 
 ### How You Used GenAI
-✅ "I used GenAI with critical thinking"
-✅ "I specified constraints upfront in prompts"
-✅ "I rejected over-engineered suggestions"
-✅ "I validated all security implementations"
-✅ "I focused on simplicity over complexity"
+ "I used GenAI with critical thinking"
+ "I specified constraints upfront in prompts"
+ "I rejected over-engineered suggestions"
+ "I validated all security implementations"
+ "I focused on simplicity over complexity"
 
 ### What Makes This Project Good
-✅ "Real Clean Architecture (not just folders)"
-✅ "Genuine TDD (not tests added after)"
-✅ "Production-quality code structure"
-✅ "Easy to understand and maintain"
-✅ "Professional presentation with automation"
+ "Real Clean Architecture (not just folders)"
+ "Genuine TDD (not tests added after)"
+ "Production-quality code structure"
+ "Easy to understand and maintain"
+ "Professional presentation with automation"
 
 ## Post-Demo Q&A
 
@@ -147,16 +147,16 @@ just db-setup         # Should setup database (if needed)
 - [ ] Your testing strategy
 
 ### Show Confidence
-- ✅ "Let me show you in the code..."
-- ✅ "I chose this approach because..."
-- ✅ "The trade-off here was..."
-- ✅ "For production, I would add..."
+-  "Let me show you in the code..."
+-  "I chose this approach because..."
+-  "The trade-off here was..."
+-  "For production, I would add..."
 
 ### Avoid These Phrases
-- ❌ "I'm not sure..."
-- ❌ "Sorry, this isn't perfect..."
-- ❌ "I should have done..."
-- ❌ "This is probably wrong..."
+-  "I'm not sure..."
+-  "Sorry, this isn't perfect..."
+-  "I should have done..."
+-  "This is probably wrong..."
 
 ## Time Management
 
@@ -175,12 +175,12 @@ Total: ~30 minutes
 
 ```bash
 # Quick verification
-just test              # ✅ 22/22 passing
-just info             # ✅ Shows project info
-docker ps | grep postgres  # ✅ Database running
+just test              #  22/22 passing
+just info             #  Shows project info
+docker ps | grep postgres  #  Database running
 ```
 
-**If all checks pass: YOU'RE READY! 🚀**
+**If all checks pass: YOU'RE READY! **
 
 ## Remember
 

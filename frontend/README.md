@@ -2,7 +2,7 @@
 
 Modern React frontend for the Task Management System, built with TypeScript and Material-UI.
 
-## 🚀 Tech Stack
+##  Tech Stack
 
 - **React 18** - Modern UI library
 - **TypeScript** - Type safety and better developer experience
@@ -13,35 +13,35 @@ Modern React frontend for the Task Management System, built with TypeScript and 
 - **React Hook Form** - Efficient form handling and validation
 - **date-fns** - Date formatting utilities
 
-## 📋 Features
+##  Features
 
 ### Authentication
-- ✅ User registration with validation
-- ✅ User login with JWT authentication
-- ✅ Protected routes
-- ✅ Persistent authentication (localStorage)
-- ✅ Automatic logout on token expiration
+-  User registration with validation
+-  User login with JWT authentication
+-  Protected routes
+-  Persistent authentication (localStorage)
+-  Automatic logout on token expiration
 
 ### Task Management
-- ✅ Create tasks with title, description, and due date
-- ✅ View all tasks in a responsive grid
-- ✅ Edit task details and status
-- ✅ Delete tasks with confirmation
-- ✅ Filter tasks by status (Pending, In Progress, Completed)
-- ✅ Visual status indicators with color coding
-- ✅ Overdue task highlighting
-- ✅ Task count by status
+-  Create tasks with title, description, and due date
+-  View all tasks in a responsive grid
+-  Edit task details and status
+-  Delete tasks with confirmation
+-  Filter tasks by status (Pending, In Progress, Completed)
+-  Visual status indicators with color coding
+-  Overdue task highlighting
+-  Task count by status
 
 ### User Experience
-- ✅ Responsive design (mobile, tablet, desktop)
-- ✅ Loading states and indicators
-- ✅ Error handling with user-friendly messages
-- ✅ Success notifications
-- ✅ Form validation with helpful error messages
-- ✅ Intuitive navigation
-- ✅ Material Design principles
+-  Responsive design (mobile, tablet, desktop)
+-  Loading states and indicators
+-  Error handling with user-friendly messages
+-  Success notifications
+-  Form validation with helpful error messages
+-  Intuitive navigation
+-  Material Design principles
 
-## 🛠️ Setup Instructions
+##  Setup Instructions
 
 ### Prerequisites
 
@@ -88,7 +88,7 @@ The built files will be in the `dist/` directory.
 npm run preview
 ```
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 src/
@@ -117,7 +117,7 @@ src/
 └── main.tsx          # Entry point
 ```
 
-## 🎨 Design Decisions
+##  Design Decisions
 
 ### Architecture
 - **Component-based architecture** for reusability and maintainability
@@ -149,7 +149,7 @@ src/
 - Type-safe forms with TypeScript
 - User-friendly error messages
 
-## 🧪 Demo Credentials
+##  Demo Credentials
 
 Use these credentials to test the application:
 
@@ -165,7 +165,7 @@ Or create a new account using the registration page.
 The application is fully responsive and works on:
 - 📱 Mobile devices (xs: 320px+)
 - 📱 Tablets (sm: 600px+)
-- 💻 Desktop (md: 900px+, lg: 1200px+)
+-  Desktop (md: 900px+, lg: 1200px+)
 
 ## 🔒 Security
 
@@ -176,7 +176,7 @@ The application is fully responsive and works on:
 - Password validation requirements
 - XSS protection via React
 
-## 🎯 Key Features for Interview
+##  Key Features for Interview
 
 ### Code Quality
 - Clean, readable code
@@ -200,14 +200,14 @@ The application is fully responsive and works on:
 - Keyboard navigation support
 - Clear visual hierarchy
 
-## 🔧 Available Scripts
+##  Available Scripts
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Backend Connection Issues
 - Ensure backend is running on `http://localhost:5000`
@@ -224,13 +224,13 @@ The application is fully responsive and works on:
 - Check that backend is returning valid JWT tokens
 - Verify token format in network tab
 
-## 📚 Additional Documentation
+##  Additional Documentation
 
 - [Architecture Documentation](./docs/ARCHITECTURE.md)
 - [API Integration Guide](./docs/API_INTEGRATION.md)
 - [Implementation Plan](./IMPLEMENTATION_PLAN.md)
 
-## 🎓 Learning Resources
+##  Learning Resources
 
 If presenting this project, highlight:
 1. Component architecture and reusability
@@ -241,11 +241,11 @@ If presenting this project, highlight:
 6. Responsive design implementation
 7. Authentication flow and JWT handling
 
-## 📝 License
+##  License
 
 This project is created for interview purposes.
 
 ---
 
-**Built with ❤️ using React, TypeScript, and Material-UI**
+**Built with ❤ using React, TypeScript, and Material-UI**
 

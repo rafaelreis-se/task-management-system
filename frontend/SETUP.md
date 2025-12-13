@@ -77,5 +77,5 @@ src/
 - ESLint checks code quality
 - Material-UI provides component documentation
 
-Enjoy coding! 🚀
+Enjoy coding! 
 

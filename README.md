@@ -2,22 +2,22 @@
 
 Full-stack web application with .NET Core backend and React frontend, built following Clean Architecture principles and Test-Driven Development (TDD).
 
-## 📋 Project Overview
+## Project Overview
 
 This is a technical interview exercise demonstrating:
-- ✅ Clean Architecture (backend)
-- ✅ Test-Driven Development (TDD)
-- ✅ RESTful API design
-- ✅ JWT authentication
-- ✅ Modern frontend with React & TypeScript
-- ✅ Full CRUD operations
-- ✅ Responsive UI design
+- Clean Architecture (backend)
+- Test-Driven Development (TDD)
+- RESTful API design
+- JWT authentication
+- Modern frontend with React & TypeScript
+- Full CRUD operations
+- Responsive UI design
 
-## 🏗️ Architecture
+## Architecture
 
 ### Backend (.NET Core 8)
 - **Clean Architecture** with separation of concerns
-- **Layers**: API → Application → Domain → Infrastructure
+- **Layers**: API -> Application -> Domain -> Infrastructure
 - **No Entity Framework or Dapper** - Custom data access using Npgsql
 - **JWT Authentication** with secure password hashing
 - **Unit Tests** with xUnit (72 comprehensive tests)
@@ -31,7 +31,7 @@ This is a technical interview exercise demonstrating:
 - **React Hook Form** for form handling
 - **Responsive design** for all devices
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - .NET 8 SDK
@@ -71,7 +71,7 @@ npm install
 npm run dev
 ```
 
-## 🧪 Demo Credentials
+## Demo Credentials
 
 ```
 Email: john@example.com
@@ -80,7 +80,7 @@ Password: TestPassword123
 
 Additional test users are seeded in the database. See `backend/src/TaskManagement.Infrastructure/Data/seed.sql`
 
-## 📚 Features
+## Features
 
 ### User Authentication
 - Register new account with validation
@@ -106,7 +106,7 @@ Additional test users are seeded in the database. See `backend/src/TaskManagemen
 - Success/error notifications
 - Confirmation dialogs for destructive actions
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 .
@@ -130,7 +130,7 @@ Additional test users are seeded in the database. See `backend/src/TaskManagemen
     └── docs/              # Frontend documentation
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Backend Tests
 ```bash
@@ -139,7 +139,7 @@ just test              # Runs all tests with isolated test database
 
 The test database runs on port 5433 (isolated from dev on 5432) and is automatically managed.
 
-## 📖 Documentation
+## Documentation
 
 ### Backend
 - [Architecture](./backend/docs/ARCHITECTURE.md)
@@ -158,7 +158,7 @@ The test database runs on port 5433 (isolated from dev on 5432) and is automatic
 - [Backend Setup](./backend/SETUP.md)
 - [Frontend Setup](./frontend/README.md)
 
-## 🔑 API Endpoints
+## API Endpoints
 
 ### Authentication
 - `POST /api/auth/register` - Register new user
@@ -171,7 +171,7 @@ The test database runs on port 5433 (isolated from dev on 5432) and is automatic
 - `PUT /api/tasks/{id}` - Update task
 - `DELETE /api/tasks/{id}` - Delete task
 
-## 🎯 Technical Highlights
+## Technical Highlights
 
 ### Clean Architecture
 - Clear separation of concerns
@@ -206,7 +206,7 @@ The test database runs on port 5433 (isolated from dev on 5432) and is automatic
 - Migration scripts
 - Seed data for testing
 
-## 🛠️ Development Tools
+## Development Tools
 
 ### Backend
 - **.NET 8** - Latest LTS framework
@@ -227,7 +227,7 @@ The test database runs on port 5433 (isolated from dev on 5432) and is automatic
 - **Docker** - Containerization
 - **Docker Compose** - Multi-container setup
 
-## 🎓 GenAI Tool Usage
+## GenAI Tool Usage
 
 This project was developed with the assistance of AI coding tools, demonstrating:
 
@@ -252,20 +252,20 @@ This project was developed with the assistance of AI coding tools, demonstrating
 
 See [GenAI Usage Documentation](./backend/docs/GENAI_USAGE.md) for detailed examples.
 
-## 🎤 Presentation Checklist
+## Presentation Checklist
 
-- ✅ User story and requirements
-- ✅ Architecture overview
-- ✅ Live demo (login, CRUD operations)
-- ✅ Code walkthrough
-- ✅ Test suite review (72 tests)
-- ✅ Database schema explanation
-- ✅ Security implementation
-- ✅ GenAI tool usage examples
-- ✅ Responsive design showcase
-- ✅ Error handling demonstration
+- [x] User story and requirements
+- [x] Architecture overview
+- [x] Live demo (login, CRUD operations)
+- [x] Code walkthrough
+- [x] Test suite review (72 tests)
+- [x] Database schema explanation
+- [x] Security implementation
+- [x] GenAI tool usage examples
+- [x] Responsive design showcase
+- [x] Error handling demonstration
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Backend Issues
 - Check PostgreSQL is running
@@ -285,7 +285,7 @@ See [GenAI Usage Documentation](./backend/docs/GENAI_USAGE.md) for detailed exam
 - Run migration scripts manually if needed
 - Check database logs for errors
 
-## 📈 Future Enhancements
+## Future Enhancements
 
 Potential improvements for production:
 - [ ] Refresh token mechanism
@@ -299,11 +299,11 @@ Potential improvements for production:
 - [ ] Automated frontend tests
 - [ ] CI/CD pipeline
 
-## 👨‍💻 Author
+## Author
 
 Rafael Reis
 
-## 📝 License
+## License
 
 This project is created for interview purposes.
 
