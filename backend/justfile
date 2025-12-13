@@ -1,166 +1,145 @@
-# Task Management System - Commands
-# Run: just <command>
+# Backend Commands
+# For root commands, use: just <command> from project root
+# For backend-only: cd backend && just <command>
 
-# List all available commands
+# List commands
 default:
     @just --list
 
-# Build the solution
+# ═══════════════════════════════════════════════════════════
+# 🚀 Development
+# ═══════════════════════════════════════════════════════════
+
+# Run API (with auto-reload)
+run-watch:
+    @echo "🚀 Starting API with hot reload..."
+    @cd src/TaskManagement.API && dotnet watch run
+
+# Run API (production mode)
+run:
+    @echo "🚀 Starting API..."
+    @cd src/TaskManagement.API && dotnet run
+
+# Build solution
 build:
-    @echo "Building solution..."
+    @echo "🔨 Building backend..."
     @dotnet build
 
 # Clean build artifacts
 clean:
-    @echo "Cleaning..."
     @dotnet clean
 
-# Restore NuGet packages
-restore:
-    @echo "Restoring packages..."
-    @dotnet restore
+# ═══════════════════════════════════════════════════════════
+# 🧪 Testing
+# ═══════════════════════════════════════════════════════════
 
 # Run all tests
 test:
-    @echo "Running all tests..."
     @dotnet test
 
-# Run tests with coverage report in terminal
+# Run tests with coverage (terminal view)
 test-coverage:
     @./show-coverage.sh
 
-# Run only unit tests (excluding integration)
-test-unit:
-    @echo "🧪 Running unit tests only..."
-    @dotnet test --filter "FullyQualifiedName!~Integration"
+# Run tests with coverage (HTML report)
+coverage-html:
+    @echo "📊 Generating HTML coverage report..."
+    @dotnet test --collect:"XPlat Code Coverage" --results-directory ./TestResults > /dev/null
+    @reportgenerator -reports:"TestResults/**/coverage.cobertura.xml" \
+        -targetdir:"TestResults/html" -reporttypes:Html
+    @echo "✅ Report: TestResults/html/index.html"
+    @open TestResults/html/index.html || true
 
-# Watch tests (re-run on file changes)
+# Watch tests (auto-run on changes)
 test-watch:
-    @echo "Watching tests..."
     @dotnet watch test
 
-# Start PostgreSQL database
-db-up:
-    @echo "Starting PostgreSQL..."
-    @docker-compose up -d postgres
+# ═══════════════════════════════════════════════════════════
+# 🗄️  Database
+# ═══════════════════════════════════════════════════════════
 
-# Stop all Docker services
+# Start database
+db-up:
+    @echo "🐘 Starting PostgreSQL..."
+    @docker-compose up -d postgres
+    @echo "✅ Database started"
+
+# Stop database
 db-down:
-    @echo "Stopping services..."
+    @echo "🛑 Stopping PostgreSQL..."
     @docker-compose down
 
-# Run database migrations
+# Run migrations
 db-migrate:
-    @echo "Running migrations..."
+    @echo "📋 Running migrations..."
     @docker exec -i gym-management-db psql -U postgres -d taskmanagement < src/TaskManagement.Infrastructure/Data/Scripts/001_create_tables.sql
 
-# Seed database with test data
+# Seed test data
 db-seed:
-    @echo "Seeding database..."
+    @echo "🌱 Seeding database..."
     @docker exec -i gym-management-db psql -U postgres -d taskmanagement < src/TaskManagement.Infrastructure/Data/Scripts/002_seed_data.sql
 
 # Setup database (migrate + seed)
 db-setup: db-migrate db-seed
-    @echo "Database ready!"
+    @echo "✅ Database ready!"
 
-# Connect to PostgreSQL CLI
+# Connect to database CLI
 db-connect:
     @docker exec -it gym-management-db psql -U postgres -d taskmanagement
 
-# Run the API locally
-run:
-    @echo "Starting API..."
-    @cd src/TaskManagement.API && dotnet run
+# ═══════════════════════════════════════════════════════════
+# 🔧 Setup
+# ═══════════════════════════════════════════════════════════
 
-# Run API with watch (auto-reload)
-run-watch:
-    @echo "Starting API with watch..."
-    @cd src/TaskManagement.API && dotnet watch run
-
-# Start everything (database + API)
-start: db-up
-    @echo "Waiting for database..."
-    @sleep 3
-    @just run
-
-# Full setup from scratch
+# Complete setup (first time)
 setup: db-up
-    @echo "Complete setup starting..."
+    @echo "⏳ Waiting for database..."
     @sleep 3
     @just db-setup
-    @echo "Setup complete! Run 'just run' to start API"
+    @echo "✅ Setup complete! Run 'just run-watch' to start"
 
-# Generate HTML coverage report
-coverage-html:
-    @echo "Generating HTML coverage report..."
-    @dotnet test --collect:"XPlat Code Coverage" --results-directory ./TestResults > /dev/null
-    @reportgenerator -reports:"TestResults/**/coverage.cobertura.xml" \
-        -targetdir:"TestResults/html" -reporttypes:Html
-    @echo "Report generated at TestResults/html/index.html"
-    @open TestResults/html/index.html
+# Start everything (db + api)
+start: db-up
+    @echo "⏳ Waiting for database..."
+    @sleep 3
+    @just run-watch
 
-# Format code
-format:
-    @echo "Formatting code..."
-    @dotnet format
+# ═══════════════════════════════════════════════════════════
+# 🐳 Docker
+# ═══════════════════════════════════════════════════════════
 
-# Check for linter errors
-lint:
-    @echo "Checking for errors..."
-    @dotnet build /warnaserror
-
-# Docker: Build and start all services
+# Start all services with Docker
 docker-up:
-    @echo "Starting all services with Docker..."
     @docker-compose up -d
 
-# Docker: Rebuild and start
+# Rebuild and start
 docker-rebuild:
-    @echo "Rebuilding and starting..."
     @docker-compose up -d --build
 
-# Docker: View logs
+# View logs
 docker-logs:
     @docker-compose logs -f
 
-# Docker: Stop and remove everything
+# Clean everything
 docker-clean:
-    @echo "Cleaning Docker..."
     @docker-compose down -v
+
+# ═══════════════════════════════════════════════════════════
+# 📊 Info
+# ═══════════════════════════════════════════════════════════
 
 # Show project info
 info:
     @echo "╔══════════════════════════════════════════════════════════╗"
-    @echo "║        Task Management System - Project Info             ║"
+    @echo "║        Task Management System - Backend                  ║"
     @echo "╠══════════════════════════════════════════════════════════╣"
-    @echo "║ .NET Version:     $(dotnet --version)"
-    @echo "║ Architecture:     Clean Architecture (4 layers)"
-    @echo "║ Testing:          TDD with xUnit"
-    @echo "║ Database:         PostgreSQL"
-    @echo "║ Data Access:      ADO.NET (raw SQL)"
-    @echo "║ Authentication:   JWT (manual implementation)"
+    @echo "║ .NET:             $(dotnet --version)"
+    @echo "║ Architecture:     Clean Architecture                     ║"
+    @echo "║ Testing:          TDD with xUnit                         ║"
+    @echo "║ Database:         PostgreSQL                             ║"
+    @echo "║ Data Access:      ADO.NET (No EF/Dapper)                ║"
+    @echo "║ Auth:             JWT (manual)                           ║"
     @echo "╚══════════════════════════════════════════════════════════╝"
     @echo ""
-    @echo "Quick start:"
-    @echo "  just setup      # First time setup"
-    @echo "  just run        # Start API"
-    @echo "  just test       # Run tests"
+    @echo "💡 From project root, use: just dev"
     @echo ""
-
-# Quick demo for interview
-demo:
-    @echo "Starting demo environment..."
-    @just setup
-    @echo ""
-    @echo "Demo ready!"
-    @echo ""
-    @echo "Test credentials:"
-    @echo "   Email: john@example.com"
-    @echo "   Password: TestPassword123"
-    @echo ""
-    @echo "Next steps:"
-    @echo "   1. Run: just run"
-    @echo "   2. Open: http://localhost:5000/swagger"
-    @echo "   3. Login and test the API"
-    @echo ""
-

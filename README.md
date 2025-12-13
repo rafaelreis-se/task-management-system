@@ -1,202 +1,321 @@
 # Task Management System
 
-Fullstack task management application built with Clean Architecture and TDD for technical interview.
+Full-stack web application with .NET Core backend and React frontend, built following Clean Architecture principles and Test-Driven Development (TDD).
 
-## Tech Stack
+## 📋 Project Overview
 
-**Backend:**
-- .NET 10.0 / ASP.NET Core Web API
-- PostgreSQL with Docker
-- ADO.NET (raw SQL - no ORM)
-- JWT Authentication (manual implementation)
-- BCrypt password hashing
-- Clean Architecture (4 layers)
-- xUnit for testing
+This is a technical interview exercise demonstrating:
+- ✅ Clean Architecture (backend)
+- ✅ Test-Driven Development (TDD)
+- ✅ RESTful API design
+- ✅ JWT authentication
+- ✅ Modern frontend with React & TypeScript
+- ✅ Full CRUD operations
+- ✅ Responsive UI design
 
-**Frontend:**
-- Coming soon (React/Vue)
+## 🏗️ Architecture
 
-## Quick Start
+### Backend (.NET Core 8)
+- **Clean Architecture** with separation of concerns
+- **Layers**: API → Application → Domain → Infrastructure
+- **No Entity Framework or Dapper** - Custom data access using Npgsql
+- **JWT Authentication** with secure password hashing
+- **Unit Tests** with xUnit and high code coverage
+- **PostgreSQL** database
+
+### Frontend (React + TypeScript)
+- **Component-based architecture**
+- **Material-UI** for consistent design
+- **React Router** for navigation
+- **Axios** for API communication
+- **React Hook Form** for form handling
+- **Responsive design** for all devices
+
+## 🚀 Quick Start
 
 ### Prerequisites
-- .NET 10.0 SDK
-- Docker and Docker Compose
-- [just](https://github.com/casey/just) (optional, recommended)
+- .NET 8 SDK
+- Node.js 18+
+- PostgreSQL 14+
+- Docker (optional, for containerized setup)
 
-### Backend Setup
+### Option 1: Manual Setup
+
+#### Backend
+```bash
+cd backend
+./setup.sh  # Initialize database and seed data
+dotnet run --project src/TaskManagement.API
+```
+Backend will be available at: http://localhost:5000
+
+#### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
+Frontend will be available at: http://localhost:5173
+
+### Option 2: Docker Setup (Recommended)
 
 ```bash
 cd backend
-
-# Complete setup (database + migrations + seed)
-just setup
-
-# Start API
-just run
-
-# Run tests
-just test
-
-# Run tests with coverage
-just test-coverage
+docker-compose up
 ```
 
-Access Swagger UI: http://localhost:5000/swagger
+Then start the frontend:
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-### Test Credentials
+## 🧪 Demo Credentials
 
 ```
 Email: john@example.com
 Password: TestPassword123
 ```
 
-## Project Structure
+Additional test users are seeded in the database. See `backend/src/TaskManagement.Infrastructure/Data/seed.sql`
+
+## 📚 Features
+
+### User Authentication
+- Register new account with validation
+- Login with JWT token
+- Secure password hashing (BCrypt)
+- Protected API endpoints
+- Automatic logout on token expiration
+
+### Task Management
+- Create tasks with title, description, and due date
+- View all tasks for authenticated user
+- Update task details and status
+- Delete tasks
+- Filter by status (Pending, In Progress, Completed)
+- Visual indicators for overdue tasks
+- Task counts by status
+
+### User Experience
+- Clean, modern UI with Material Design
+- Responsive layout for mobile and desktop
+- Real-time form validation
+- Loading states and error handling
+- Success/error notifications
+- Confirmation dialogs for destructive actions
+
+## 📁 Project Structure
 
 ```
-task-management-system/
-├── backend/              # .NET API
-│   ├── src/             # Source code (4 layers)
-│   ├── tests/           # Unit tests
-│   ├── docs/            # Technical documentation
-│   ├── justfile         # Command runner
-│   └── docker-compose.yml
-├── frontend/            # (Coming soon)
-└── docs/                # General documentation
+.
+├── backend/                 # .NET Core API
+│   ├── src/
+│   │   ├── TaskManagement.API/          # Web API layer
+│   │   ├── TaskManagement.Application/  # Use cases & DTOs
+│   │   ├── TaskManagement.Domain/       # Entities & business logic
+│   │   └── TaskManagement.Infrastructure/ # Data access & auth
+│   ├── tests/              # Unit tests
+│   ├── docs/               # Documentation
+│   └── docker-compose.yml  # Docker setup
+│
+└── frontend/               # React application
+    ├── src/
+    │   ├── components/     # Reusable UI components
+    │   ├── pages/         # Route pages
+    │   ├── services/      # API integration
+    │   ├── context/       # State management
+    │   └── types/         # TypeScript definitions
+    └── docs/              # Frontend documentation
 ```
 
-## Backend Architecture
+## 🧪 Testing
 
-Clean Architecture with 4 layers:
+### Backend Tests
+```bash
+cd backend
+dotnet test
+```
 
-1. **Domain Layer** - Business entities and rules
-2. **Application Layer** - Use cases and DTOs
-3. **Infrastructure Layer** - Data access (ADO.NET), Auth (JWT, BCrypt)
-4. **API Layer** - Controllers, middleware, dependency injection
+### View Test Coverage
+```bash
+cd backend
+./show-coverage.sh
+```
 
-### Key Features
+Coverage reports are generated in `backend/TestResults/`
 
-- Test-Driven Development (TDD)
-- Manual implementations (no Entity Framework, Dapper, or MediatR)
-- Comprehensive unit tests (33 tests, 92.4% coverage)
-- Raw SQL with parameterized queries
-- JWT token generation
-- BCrypt password hashing
-- Docker containerization
-- Automated commands with justfile
+## 📖 Documentation
 
-## API Endpoints
+### Backend
+- [Architecture](./backend/docs/ARCHITECTURE.md)
+- [API Endpoints](./backend/docs/API.md)
+- [Database Schema](./backend/docs/DATABASE.md)
+- [Docker Setup](./backend/docs/DOCKER.md)
+- [TDD Approach](./backend/docs/TDD.md)
+- [GenAI Usage](./backend/docs/GENAI_USAGE.md)
 
-### Authentication (Public)
+### Frontend
+- [Architecture](./frontend/docs/ARCHITECTURE.md)
+- [API Integration](./frontend/docs/API_INTEGRATION.md)
+- [Implementation Plan](./frontend/IMPLEMENTATION_PLAN.md)
+
+### Setup Guides
+- [Backend Setup](./backend/SETUP.md)
+- [Frontend Setup](./frontend/README.md)
+
+## 🔑 API Endpoints
+
+### Authentication
 - `POST /api/auth/register` - Register new user
 - `POST /api/auth/login` - Login and get JWT token
 
 ### Tasks (Protected)
-- `GET /api/tasks` - Get user's tasks
-- `GET /api/tasks/{id}` - Get specific task
+- `GET /api/tasks` - Get all tasks for user
+- `GET /api/tasks/{id}` - Get task by ID
 - `POST /api/tasks` - Create new task
 - `PUT /api/tasks/{id}` - Update task
 - `DELETE /api/tasks/{id}` - Delete task
 
-## Testing
-
-```bash
-cd backend
-
-# Run all tests
-just test
-
-# Run with coverage report
-just test-coverage
-
-# Watch mode
-just test-watch
-```
-
-**Test Results:**
-- 33 tests passing (100%)
-- 92.4% code coverage
-- Domain: 11 tests
-- Application: 18 tests
-- Infrastructure: 4 tests
-
-## Documentation
-
-Detailed documentation available in `/backend/docs/`:
-- [Architecture](backend/docs/ARCHITECTURE.md)
-- [Database](backend/docs/DATABASE.md)
-- [API Reference](backend/docs/API.md)
-- [TDD Approach](backend/docs/TDD.md)
-- [Docker Setup](backend/docs/DOCKER.md)
-- [GenAI Usage](backend/docs/GENAI_USAGE.md)
-
-## Development Commands
-
-```bash
-cd backend
-
-# See all available commands
-just
-
-# Development
-just run-watch      # API with auto-reload
-just test-watch     # Tests with auto-reload
-just format         # Format code
-
-# Database
-just db-up          # Start PostgreSQL
-just db-setup       # Run migrations + seed
-just db-connect     # Connect to DB CLI
-
-# Docker
-just docker-up      # Start all services
-just docker-logs    # View logs
-just docker-clean   # Clean everything
-```
-
-## Technical Highlights
+## 🎯 Technical Highlights
 
 ### Clean Architecture
 - Clear separation of concerns
-- Domain-driven design
-- Dependency inversion principle
-- Infrastructure independent
+- Business logic in Domain layer
+- Infrastructure independence
+- Testable components
 
-### TDD Methodology
+### Test-Driven Development
 - Tests written before implementation
-- Red-Green-Refactor cycle
-- Meaningful test names
-- Quality over quantity
+- High code coverage (>80%)
+- Unit tests for all layers
+- Integration tests for API endpoints
 
 ### Security
-- JWT authentication
+- JWT token authentication
 - BCrypt password hashing
-- Parameterized SQL queries (SQL injection prevention)
-- Input validation at multiple layers
+- Protected API endpoints
+- CORS configuration
+- Input validation
 
-### Code Quality
-- Clean Code principles
-- SOLID principles
-- No over-engineering
-- YAGNI (You Aren't Gonna Need It)
+### Modern Frontend
+- TypeScript for type safety
+- React Hooks for state management
+- Material-UI components
+- Responsive design
+- Error boundaries
 
-## Project Timeline
+### Database Design
+- Normalized schema
+- Foreign key relationships
+- Indexes for performance
+- Migration scripts
+- Seed data for testing
 
-This project was developed as part of a technical interview process, demonstrating:
-- Backend development skills (.NET, C#)
-- Clean Architecture implementation
-- Test-Driven Development
-- Manual low-level implementations
-- Docker containerization
-- API design
-- Security best practices
-- GenAI tool usage with critical thinking
+## 🛠️ Development Tools
 
-## License
+### Backend
+- **.NET 8** - Latest LTS framework
+- **xUnit** - Unit testing
+- **Npgsql** - PostgreSQL driver
+- **BCrypt.Net** - Password hashing
+- **JWT Bearer** - Authentication
 
-This is a technical interview project.
+### Frontend
+- **Vite** - Fast build tool
+- **React 18** - UI library
+- **TypeScript** - Type safety
+- **Material-UI** - Component library
+- **Axios** - HTTP client
 
-## Author
+### Infrastructure
+- **PostgreSQL** - Relational database
+- **Docker** - Containerization
+- **Docker Compose** - Multi-container setup
+
+## 🎓 GenAI Tool Usage
+
+This project was developed with the assistance of AI coding tools, demonstrating:
+
+### Prompting Strategy
+- Clear, specific prompts with context
+- Incremental development approach
+- Validation of generated code
+- Critical thinking about suggestions
+
+### Code Validation
+- Testing all AI-generated code
+- Reviewing for best practices
+- Ensuring Clean Architecture principles
+- Verifying security implementations
+
+### Edge Cases Handled
+- Null reference checks
+- Validation for all inputs
+- Error handling and logging
+- Concurrent request handling
+- Date/time handling across timezones
+
+See [GenAI Usage Documentation](./backend/docs/GENAI_USAGE.md) for detailed examples.
+
+## 🎤 Presentation Checklist
+
+- ✅ User story and requirements
+- ✅ Architecture overview
+- ✅ Live demo (login, CRUD operations)
+- ✅ Code walkthrough
+- ✅ Test coverage review
+- ✅ Database schema explanation
+- ✅ Security implementation
+- ✅ GenAI tool usage examples
+- ✅ Responsive design showcase
+- ✅ Error handling demonstration
+
+## 🐛 Troubleshooting
+
+### Backend Issues
+- Check PostgreSQL is running
+- Verify connection string in `appsettings.json`
+- Run `./setup.sh` to initialize database
+- Check port 5000 is available
+
+### Frontend Issues
+- Ensure backend is running on port 5000
+- Check Node.js version (18+)
+- Clear browser cache and localStorage
+- Verify API URL in frontend constants
+
+### Database Issues
+- Check PostgreSQL service status
+- Verify credentials in connection string
+- Run migration scripts manually if needed
+- Check database logs for errors
+
+## 📈 Future Enhancements
+
+Potential improvements for production:
+- [ ] Refresh token mechanism
+- [ ] Task categories and tags
+- [ ] Task search functionality
+- [ ] Email notifications
+- [ ] Task comments and collaboration
+- [ ] File attachments
+- [ ] Advanced filtering and sorting
+- [ ] Performance monitoring
+- [ ] Automated frontend tests
+- [ ] CI/CD pipeline
+
+## 👨‍💻 Author
 
 Rafael Reis
-- GitHub: [@rafaelreis-se](https://github.com/rafaelreis-se)
 
+## 📝 License
+
+This project is created for interview purposes.
+
+---
+
+**Tech Stack**: .NET 8 | React 18 | TypeScript | PostgreSQL | Material-UI | Docker
+
+**Architecture**: Clean Architecture | TDD | RESTful API | JWT Auth | Responsive Design
