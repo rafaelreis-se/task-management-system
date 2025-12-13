@@ -3,8 +3,7 @@
 ## Pre-Interview Setup
 
 ### Day Before Interview
-- [ ] Run `just test` - Confirm all 22 tests passing
-- [ ] Run `just test-coverage` - Verify coverage report works
+- [ ] Run `just test` - Confirm all 72 tests passing
 - [ ] Read `IMPLEMENTATION_PLAN.md` - Understand your development process
 - [ ] Read `PROJECT_SUMMARY.md` - Key points for presentation
 - [ ] Read `GENAI_USAGE.md` - Prepare for AI discussion
@@ -47,8 +46,8 @@
 - [ ] Open a test file first
 - [ ] Explain "I wrote tests FIRST"
 - [ ] Show corresponding implementation
-- [ ] Run `just test` live
-- [ ] Show `just test-coverage` output
+- [ ] Run `just test` live (72 tests with isolated test database)
+- [ ] Highlight integration tests with real PostgreSQL
 - [ ] Explain focus on quality over quantity
 
 ### Manual Implementations (4 min)
@@ -102,8 +101,7 @@
 ### Before Interview Starts
 ```bash
 # Verify everything works
-just test              # Should show 22/22 passing
-just test-coverage     # Should show coverage report
+just test              # Should show 72/72 passing
 just info             # Should show project info
 just db-setup         # Should setup database (if needed)
 ```
@@ -199,10 +197,10 @@ docker ps | grep postgres  # ✅ Database running
 - TDD methodology followed
 - No prohibited frameworks used
 - Manual authentication implemented
-- All tests passing (22/22)
+- All tests passing (72/72)
 - Code is clean and maintainable
 - Comprehensive documentation
-- Professional tooling (just, coverage)
+- Professional tooling (just commands, automated test database)
 
 ## You Got This!
 

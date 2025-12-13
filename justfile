@@ -103,9 +103,6 @@ test:
         exit 1
     fi
 
-# Run tests with coverage (same as test for now)
-test-cov: test
-
 # Watch tests (auto-run on changes)
 test-watch:
     @echo "👀 Watching tests..."

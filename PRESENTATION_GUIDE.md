@@ -182,16 +182,16 @@ dotnet test
 - Unit tests for all layers
 - Mock dependencies for isolation
 
-**Show Coverage Report:**
+**Show Test Results:**
 ```bash
-./show-coverage.sh
+just test
 ```
 
 **Highlight:**
-- >80% code coverage
-- Tests for business logic
-- Tests for repositories
-- Tests for use cases
+- 72 comprehensive tests across all layers
+- Integration tests with real database (isolated on port 5433)
+- Unit tests for business logic, repositories, and use cases
+- Automatic test database lifecycle management
 
 ### 7. GenAI Tool Usage (2 minutes)
 
@@ -335,7 +335,7 @@ frontend/
 - [ ] Frontend: http://localhost:5173
 - [ ] API docs: http://localhost:5000/swagger (if implemented)
 - [ ] GitHub repository (if applicable)
-- [ ] Test coverage report
+- [ ] Terminal ready to run `just test`
 
 ## 💡 Tips for Success
 
@@ -378,7 +378,7 @@ Consider having screenshots ready in case of technical difficulties:
 - Dashboard with tasks
 - Create task dialog
 - Mobile responsive view
-- Test coverage report
+- Test results (72 tests passing)
 - Architecture diagram
 
 ## 🎯 Success Metrics

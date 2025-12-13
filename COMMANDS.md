@@ -34,8 +34,7 @@ just clean             # Limpa artifacts
 
 ### 🧪 Testes
 ```bash
-just test              # Roda todos os testes
-just test-cov          # Testes + cobertura
+just test              # Roda todos os testes (72 tests com banco isolado)
 just test-watch        # Auto-run nos changes
 ```
 

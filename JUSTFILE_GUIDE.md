@@ -52,11 +52,8 @@ just clean
 
 ### Testes
 ```bash
-# Executar todos os testes
+# Executar todos os testes (72 tests com banco isolado)
 just test
-
-# Testes com cobertura
-just test-cov
 
 # Assistir testes (auto-run)
 just test-watch

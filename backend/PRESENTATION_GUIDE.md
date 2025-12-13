@@ -9,8 +9,7 @@ brew install just
 
 ### Test Everything Works
 ```bash
-just test
-just test-coverage
+just test  # Should show 72/72 passing
 ```
 
 ## Opening Statement (1 minute)
@@ -75,12 +74,7 @@ Explain:
 
 **Run tests live:**
 ```bash
-just test
-```
-
-**Show coverage:**
-```bash
-just test-coverage
+just test  # Watch 72 tests pass with isolated test database
 ```
 
 ### 4. Manual Implementations (4 min)
@@ -151,8 +145,8 @@ A: "I'd add structured logging with Serilog, implement health checks, add reques
 **Q: How do you ensure security?**
 A: "Multiple layers: parameterized queries prevent SQL injection, BCrypt with salt for passwords, JWT tokens with expiration, HTTPS in production, and input validation at both domain and API layers."
 
-**Q: Why this specific coverage percentage?**
-A: "I focused on quality over quantity. The tests cover all critical business logic, validation rules, and authentication flows. I avoided writing tests just to hit an arbitrary percentage target."
+**Q: What is your testing strategy?**
+A: "I wrote 72 comprehensive tests covering all layers - unit tests for business logic and validation, integration tests with real PostgreSQL database. I focused on quality over quantity, testing critical paths, edge cases, and error scenarios rather than chasing arbitrary coverage metrics."
 
 **Q: How would you scale this?**
 A: "Add caching for read-heavy operations, implement read replicas, add message queues for async operations, implement CQRS if needed, add API gateway for microservices, and containerize with Kubernetes."
@@ -172,7 +166,7 @@ A: "Just is more modern, cross-platform, has simpler syntax without Make's tab i
 
 **Quick References:**
 - `PROJECT_SUMMARY.md` - Project overview
-- `TEST_RESULTS.md` - Test coverage details
+- `TEST_RESULTS.md` - Test suite details
 - `COMMANDS.md` - All useful commands
 
 ## Demo Script
@@ -218,7 +212,7 @@ Start API and test all endpoints live with Swagger
 ✅ Security consciousness (parameterized queries, BCrypt, JWT)
 ✅ Code quality (SOLID principles, clean code)
 ✅ Documentation (comprehensive docs)
-✅ Developer experience (justfile, coverage, setup scripts)
+✅ Developer experience (justfile, automated test database, setup scripts)
 ✅ Critical thinking with GenAI (show what you rejected)
 
 ## Closing Statement
@@ -259,7 +253,7 @@ Remember: The code quality and architecture matter more than a perfect live demo
 
 Before presenting:
 - [ ] `just test` - All tests passing
-- [ ] `just test-coverage` - Coverage report working
+- [ ] `just test` - All 72 tests passing
 - [ ] `just info` - Shows project info correctly
 - [ ] Review IMPLEMENTATION_PLAN.md
 - [ ] Review PROJECT_SUMMARY.md

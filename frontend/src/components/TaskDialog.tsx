@@ -11,7 +11,7 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
-import type { Task, CreateTaskDto, UpdateTaskDto, TaskStatus } from '@/types/api.types';
+import type { Task, CreateTaskDto, UpdateTaskDto } from '@/types/api.types';
 import { TASK_STATUSES } from '@/utils/constants';
 
 interface TaskDialogProps {

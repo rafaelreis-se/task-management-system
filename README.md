@@ -20,7 +20,7 @@ This is a technical interview exercise demonstrating:
 - **Layers**: API → Application → Domain → Infrastructure
 - **No Entity Framework or Dapper** - Custom data access using Npgsql
 - **JWT Authentication** with secure password hashing
-- **Unit Tests** with xUnit and high code coverage
+- **Unit Tests** with xUnit (72 comprehensive tests)
 - **PostgreSQL** database
 
 ### Frontend (React + TypeScript)
@@ -134,17 +134,10 @@ Additional test users are seeded in the database. See `backend/src/TaskManagemen
 
 ### Backend Tests
 ```bash
-cd backend
-dotnet test
+just test              # Runs all tests with isolated test database
 ```
 
-### View Test Coverage
-```bash
-cd backend
-./show-coverage.sh
-```
-
-Coverage reports are generated in `backend/TestResults/`
+The test database runs on port 5433 (isolated from dev on 5432) and is automatically managed.
 
 ## 📖 Documentation
 
@@ -188,7 +181,7 @@ Coverage reports are generated in `backend/TestResults/`
 
 ### Test-Driven Development
 - Tests written before implementation
-- High code coverage (>80%)
+- 72 comprehensive tests covering all layers
 - Unit tests for all layers
 - Integration tests for API endpoints
 
@@ -265,7 +258,7 @@ See [GenAI Usage Documentation](./backend/docs/GENAI_USAGE.md) for detailed exam
 - ✅ Architecture overview
 - ✅ Live demo (login, CRUD operations)
 - ✅ Code walkthrough
-- ✅ Test coverage review
+- ✅ Test suite review (72 tests)
 - ✅ Database schema explanation
 - ✅ Security implementation
 - ✅ GenAI tool usage examples

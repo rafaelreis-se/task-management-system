@@ -83,11 +83,8 @@ dotnet watch run
 ## Testing Commands
 
 ```bash
-# Run all tests
+# Run all tests (automatically manages test database on port 5433)
 dotnet test
-
-# Run tests with coverage in terminal (Node.js style!)
-./show-coverage.sh
 
 # Run tests with output
 dotnet test -v normal
@@ -95,11 +92,11 @@ dotnet test -v normal
 # Run specific test project
 dotnet test tests/TaskManagement.Domain.Tests
 
-# Run tests with coverage
-dotnet test --collect:"XPlat Code Coverage"
-
 # Run specific test
 dotnet test --filter "FullyQualifiedName~CreateTask_WithValidData_ShouldSucceed"
+
+# Watch tests (auto-run on changes)
+dotnet watch test
 ```
 
 ## API Testing with curl

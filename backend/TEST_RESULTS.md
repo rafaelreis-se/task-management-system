@@ -1,116 +1,75 @@
 # Test Results Summary
 
-## FINAL RESULTS: 33/33 Tests PASSING (100%)
+## FINAL RESULTS: 72/72 Tests PASSING (100%)
 
 **All tests passing with .NET 10.0!**
 
 ### Test Execution Summary
 
-#### Unit Tests - ALL PASSED
+**Total: 72 tests, 72 passed, 0 failed**
 
-**Total: 33 tests, 33 passed, 0 failed**
+#### Test Breakdown by Project
 
-**Domain Tests: 11/11 passed**
-- CreateTask_WithValidData_ShouldSucceed
-- CreateTask_WithEmptyTitle_ShouldThrowException  
-- CreateTask_WithTitleTooLong_ShouldThrowException
-- CreateTask_WithPastDueDate_ShouldThrowException
-- UpdateTask_WithValidData_ShouldSucceed
-- ChangeStatus_ToInProgress_ShouldSucceed
-- ChangeStatus_ToCompleted_ShouldSucceed
-- CreateUser_WithValidData_ShouldSucceed
-- CreateUser_WithEmptyName_ShouldThrowException
-- CreateUser_WithInvalidEmail_ShouldThrowException
-- CreateUser_WithEmptyPasswordHash_ShouldThrowException
+**Domain Tests: 21/21 passed**
+- Task entity creation, validation, and status transitions
+- User entity creation with email validation
+- Business rule enforcement
+- Edge cases (empty values, invalid formats, past dates)
 
-**Application Tests: 18/18 passed**
-- CreateTask_WithValidData_ShouldCreateTask
-- GetTasks_ShouldReturnUserTasks
-- GetTasks_WithNoTasks_ShouldReturnEmptyList
-- GetTasks_ShouldReturnTasksWithCorrectData
-- UpdateTask_WithValidData_ShouldUpdateTask
-- UpdateTask_WithNonExistentTask_ShouldReturnNull
-- UpdateTask_WithDifferentUserId_ShouldReturnNull
-- UpdateTask_StatusChange_ShouldUpdateCorrectly
-- DeleteTask_WithValidData_ShouldDeleteTask
-- DeleteTask_WithNonExistentTask_ShouldReturnFalse
-- DeleteTask_WithDifferentUserId_ShouldReturnFalse
-- DeleteTask_ShouldVerifyTaskOwnership
-- RegisterUser_WithValidData_ShouldRegisterUser
-- RegisterUser_WithExistingEmail_ShouldThrowException
-- RegisterUser_WithShortPassword_ShouldThrowException
-- LoginUser_WithValidCredentials_ShouldReturnToken
-- LoginUser_WithInvalidEmail_ShouldReturnNull
-- LoginUser_WithInvalidPassword_ShouldReturnNull
+**Application Tests: 22/22 passed**
+- CreateTaskUseCase - task creation with validation
+- GetTasksUseCase - task retrieval and filtering
+- UpdateTaskUseCase - task updates with ownership checks
+- DeleteTaskUseCase - task deletion with authorization
+- RegisterUserUseCase - user registration with duplicate prevention
+- LoginUserUseCase - authentication with credential verification
 
-**Infrastructure Tests: 4/4 passed**
-- PasswordHasher_HashPassword_ShouldReturnHashedPassword
-- PasswordHasher_VerifyPassword_WithCorrectPassword_ShouldReturnTrue
-- PasswordHasher_VerifyPassword_WithIncorrectPassword_ShouldReturnFalse
-- JwtTokenGenerator_GenerateToken_ShouldReturnValidJwtToken
+**Integration Tests: 19/19 passed**
+- TaskRepository - CRUD operations with real PostgreSQL
+- UserRepository - User operations with real database
+- CreateTaskUseCase integration - End-to-end task creation
+- UpdateTaskUseCase integration - End-to-end task updates
+- Real database interactions on isolated test database (port 5433)
 
-### Integration Tests - Not Included
+**Infrastructure Tests: 10/10 passed**
+- PasswordHasher - BCrypt implementation
+- JwtTokenGenerator - JWT token creation and validation
+- Repository implementations with ADO.NET
 
-Integration tests were removed due to a known compatibility issue with .NET 10.0 and `WebApplicationFactory`.
-This is a known bug in the preview version: https://github.com/dotnet/aspnetcore/issues/52018
+### Test Database
 
-The unit tests provide comprehensive coverage of:
-
-- All business logic (Domain layer)
-- All use cases (Application layer)  
-- All infrastructure implementations (JWT, BCrypt)
-- Complete TDD demonstration
-
-**Note:** For production projects with .NET 8 LTS, integration tests would be included.
-
-## Code Coverage
-
-Coverage reports generated in `TestResults/` folder.
-
-To view coverage with reportgenerator:
-
-```bash
-# Install report generator (once)
-dotnet tool install -g dotnet-reportgenerator-globaltool
-
-# Generate HTML report
-reportgenerator \
-  -reports:"TestResults/**/coverage.cobertura.xml" \
-  -targetdir:"TestResults/html" \
-  -reporttypes:Html
-
-# Open report
-open TestResults/html/index.html
-```
-
-## Test Statistics
-
-- **Total Tests:** 33
-- **Pass Rate:** 100%
-- **Failed:** 0
-- **Build Warnings:** 0
-- **Test Projects:** 3 (Domain, Application, Infrastructure)
+Integration tests use an **isolated PostgreSQL instance**:
+- Runs on **port 5433** (separate from dev database on 5432)
+- Database name: `taskmanagement_test`
+- Automatically managed by `just test` command
+- Clean state for each test run
 
 ## Test Quality
 
 ### What Was Tested:
 
-1. **Domain Layer**
+1. **Domain Layer (21 tests)**
    - Business logic validation
    - Entity creation with valid/invalid data
-   - Status transitions
-   - Edge cases (empty values, too long text, past dates)
+   - Status transitions and state management
+   - Edge cases and error scenarios
 
-2. **Application Layer**
-   - Use case execution with mocks
-   - Authentication flow
+2. **Application Layer (22 tests)**
+   - Use case execution with mocked dependencies
+   - Authentication and authorization flows
    - Validation logic
-   - Error scenarios
+   - Error handling and edge cases
 
-3. **Infrastructure Layer**
-   - Password hashing functionality
-   - JWT token generation
-   - Token claims verification
+3. **Integration Layer (19 tests)**
+   - Real database operations
+   - Foreign key constraints
+   - Transaction handling
+   - End-to-end use case flows
+
+4. **Infrastructure Layer (10 tests)**
+   - Password hashing with BCrypt
+   - JWT token generation and validation
+   - Repository implementations
 
 ### TDD Approach Demonstrated:
 
@@ -118,36 +77,37 @@ open TestResults/html/index.html
 - Red-Green-Refactor cycle followed
 - Meaningful test names (describe what they validate)
 - Focus on critical paths and business rules
-- Not hundreds of tests, but quality over quantity
+- Both unit tests (with mocks) and integration tests (with real database)
 
 ## Build Status
 
 **Build: SUCCESS**
 - 0 Errors
 - 0 Warnings
+- All 72 tests passing
+
+## Running Tests
+
+```bash
+# Run all tests (automatically manages test database)
+just test
+
+# Tests will:
+# 1. Start test database on port 5433
+# 2. Wait for database to be ready
+# 3. Run all 72 tests
+# 4. Clean up database automatically
+```
 
 ## Summary
 
-The unit tests demonstrate:
-- Complete TDD implementation
-- Clean Architecture principles
-- Business rules properly validated
-- Authentication logic working
-- Manual implementations (BCrypt, JWT) tested
+The test suite demonstrates:
+- ✅ Complete TDD implementation (72 comprehensive tests)
+- ✅ Clean Architecture principles with proper layer separation
+- ✅ Business rules properly validated at domain level
+- ✅ Integration tests with real PostgreSQL database
+- ✅ Isolated test environment (port 5433)
+- ✅ Authentication logic fully tested
+- ✅ Manual implementations (ADO.NET, BCrypt, JWT) tested
 
-Integration tests are implemented and will pass when database is running.
-
-## Next Steps
-
-To see all tests green:
-
-1. Start Docker: `docker-compose up -d`
-2. Run migrations (see scripts in `src/TaskManagement.Infrastructure/Data/Scripts/`)
-3. Run tests: `dotnet test`
-
-## Coverage Files
-
-Generated coverage files:
-- `TestResults/**/coverage.cobertura.xml` - XML format
-- Can be converted to HTML for visualization
-
+The project has a robust test suite covering all critical functionality without relying on code coverage metrics.

@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import { Edit, Delete, CalendarToday } from '@mui/icons-material';
 import { format } from 'date-fns';
-import type { Task, TaskStatus } from '@/types/api.types';
+import type { Task } from '@/types/api.types';
 import { TASK_STATUSES } from '@/utils/constants';
 
 interface TaskCardProps {

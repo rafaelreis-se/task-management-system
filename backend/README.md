@@ -54,8 +54,8 @@ just setup
 # Start API
 just run
 
-# Run tests with coverage
-just test-coverage
+# Run all tests (72 tests with isolated test database)
+just test
 ```
 
 ### Running with Docker
@@ -85,13 +85,9 @@ dotnet run
 
 ### Running Tests
 ```bash
-# Run all tests
-dotnet test
-# or: just test
-
-# Run tests with coverage report in terminal
-./show-coverage.sh
-# or: just test-coverage
+# Run all tests (automatically manages test database on port 5433)
+just test
+# or: cd backend && dotnet test
 ```
 
 ### Available Commands

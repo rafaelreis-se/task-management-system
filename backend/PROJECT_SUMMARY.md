@@ -67,11 +67,11 @@ A complete RESTful API for task management following Clean Architecture principl
 - ~50 files total
 - Clean separation of concerns
 
-### Test Coverage
-- Domain: Entity validation and business rules
-- Application: Use case logic with mocked dependencies
-- Infrastructure: Password hashing and JWT generation
-- API: Integration tests with authentication flows
+### Test Suite (72 Tests)
+- **21 Domain tests**: Entity validation and business rules
+- **22 Application tests**: Use case logic with mocked dependencies
+- **19 Integration tests**: Real database operations (PostgreSQL on port 5433)
+- **10 Infrastructure tests**: Password hashing, JWT generation, repositories
 
 ### Features Implemented
 
@@ -217,8 +217,8 @@ A: Logging framework (Serilog), health checks, metrics, retry policies, more com
 **Q: How do you ensure security?**
 A: Parameterized queries prevent SQL injection, BCrypt with salt for passwords, JWT tokens with expiration, HTTPS only in production, and input validation at multiple layers.
 
-**Q: Why these specific tests?**
-A: I focused on meaningful tests that validate business rules and critical paths rather than aiming for 100% coverage. Quality over quantity.
+**Q: Why 72 tests?**
+A: I wrote comprehensive tests across all layers - 21 domain tests for business logic, 22 application tests with mocks, 19 integration tests with real database, and 10 infrastructure tests. I focused on meaningful tests that validate business rules, critical paths, and edge cases rather than chasing coverage metrics. Quality over quantity.
 
 ## Files to Highlight
 

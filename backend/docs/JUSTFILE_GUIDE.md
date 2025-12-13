@@ -45,11 +45,8 @@ just setup
 # Run the API
 just run
 
-# Run tests
+# Run all tests (72 tests with isolated test database on port 5433)
 just test
-
-# Run tests with coverage
-just test-coverage
 ```
 
 ### Development Commands
@@ -118,13 +115,7 @@ just test
 # Run only unit tests
 just test-unit
 
-# Run with coverage in terminal
-just test-coverage
-
-# Generate HTML coverage report
-just coverage-html
-
-# Watch tests
+# Watch tests (auto-run on changes)
 just test-watch
 ```
 
@@ -150,7 +141,7 @@ just setup
 just run
 
 # 3. In another terminal, run tests
-just test-coverage
+just test
 ```
 
 ## Common Workflows
