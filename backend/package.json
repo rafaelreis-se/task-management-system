@@ -1,0 +1,15 @@
+{
+  "name": "taskmanagement-backend",
+  "version": "1.0.0",
+  "description": "Task Management System Backend - .NET Clean Architecture",
+  "scripts": {
+    "test": "dotnet test",
+    "test:coverage": "./show-coverage.sh",
+    "build": "dotnet build",
+    "clean": "dotnet clean",
+    "run": "cd src/TaskManagement.API && dotnet run"
+  },
+  "author": "Rafael Reis",
+  "license": "MIT"
+}
+

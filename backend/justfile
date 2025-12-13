@@ -1,0 +1,166 @@
+# Task Management System - Commands
+# Run: just <command>
+
+# List all available commands
+default:
+    @just --list
+
+# Build the solution
+build:
+    @echo "Building solution..."
+    @dotnet build
+
+# Clean build artifacts
+clean:
+    @echo "Cleaning..."
+    @dotnet clean
+
+# Restore NuGet packages
+restore:
+    @echo "Restoring packages..."
+    @dotnet restore
+
+# Run all tests
+test:
+    @echo "Running all tests..."
+    @dotnet test
+
+# Run tests with coverage report in terminal
+test-coverage:
+    @./show-coverage.sh
+
+# Run only unit tests (excluding integration)
+test-unit:
+    @echo "🧪 Running unit tests only..."
+    @dotnet test --filter "FullyQualifiedName!~Integration"
+
+# Watch tests (re-run on file changes)
+test-watch:
+    @echo "Watching tests..."
+    @dotnet watch test
+
+# Start PostgreSQL database
+db-up:
+    @echo "Starting PostgreSQL..."
+    @docker-compose up -d postgres
+
+# Stop all Docker services
+db-down:
+    @echo "Stopping services..."
+    @docker-compose down
+
+# Run database migrations
+db-migrate:
+    @echo "Running migrations..."
+    @docker exec -i gym-management-db psql -U postgres -d taskmanagement < src/TaskManagement.Infrastructure/Data/Scripts/001_create_tables.sql
+
+# Seed database with test data
+db-seed:
+    @echo "Seeding database..."
+    @docker exec -i gym-management-db psql -U postgres -d taskmanagement < src/TaskManagement.Infrastructure/Data/Scripts/002_seed_data.sql
+
+# Setup database (migrate + seed)
+db-setup: db-migrate db-seed
+    @echo "Database ready!"
+
+# Connect to PostgreSQL CLI
+db-connect:
+    @docker exec -it gym-management-db psql -U postgres -d taskmanagement
+
+# Run the API locally
+run:
+    @echo "Starting API..."
+    @cd src/TaskManagement.API && dotnet run
+
+# Run API with watch (auto-reload)
+run-watch:
+    @echo "Starting API with watch..."
+    @cd src/TaskManagement.API && dotnet watch run
+
+# Start everything (database + API)
+start: db-up
+    @echo "Waiting for database..."
+    @sleep 3
+    @just run
+
+# Full setup from scratch
+setup: db-up
+    @echo "Complete setup starting..."
+    @sleep 3
+    @just db-setup
+    @echo "Setup complete! Run 'just run' to start API"
+
+# Generate HTML coverage report
+coverage-html:
+    @echo "Generating HTML coverage report..."
+    @dotnet test --collect:"XPlat Code Coverage" --results-directory ./TestResults > /dev/null
+    @reportgenerator -reports:"TestResults/**/coverage.cobertura.xml" \
+        -targetdir:"TestResults/html" -reporttypes:Html
+    @echo "Report generated at TestResults/html/index.html"
+    @open TestResults/html/index.html
+
+# Format code
+format:
+    @echo "Formatting code..."
+    @dotnet format
+
+# Check for linter errors
+lint:
+    @echo "Checking for errors..."
+    @dotnet build /warnaserror
+
+# Docker: Build and start all services
+docker-up:
+    @echo "Starting all services with Docker..."
+    @docker-compose up -d
+
+# Docker: Rebuild and start
+docker-rebuild:
+    @echo "Rebuilding and starting..."
+    @docker-compose up -d --build
+
+# Docker: View logs
+docker-logs:
+    @docker-compose logs -f
+
+# Docker: Stop and remove everything
+docker-clean:
+    @echo "Cleaning Docker..."
+    @docker-compose down -v
+
+# Show project info
+info:
+    @echo "╔══════════════════════════════════════════════════════════╗"
+    @echo "║        Task Management System - Project Info             ║"
+    @echo "╠══════════════════════════════════════════════════════════╣"
+    @echo "║ .NET Version:     $(dotnet --version)"
+    @echo "║ Architecture:     Clean Architecture (4 layers)"
+    @echo "║ Testing:          TDD with xUnit"
+    @echo "║ Database:         PostgreSQL"
+    @echo "║ Data Access:      ADO.NET (raw SQL)"
+    @echo "║ Authentication:   JWT (manual implementation)"
+    @echo "╚══════════════════════════════════════════════════════════╝"
+    @echo ""
+    @echo "Quick start:"
+    @echo "  just setup      # First time setup"
+    @echo "  just run        # Start API"
+    @echo "  just test       # Run tests"
+    @echo ""
+
+# Quick demo for interview
+demo:
+    @echo "Starting demo environment..."
+    @just setup
+    @echo ""
+    @echo "Demo ready!"
+    @echo ""
+    @echo "Test credentials:"
+    @echo "   Email: john@example.com"
+    @echo "   Password: TestPassword123"
+    @echo ""
+    @echo "Next steps:"
+    @echo "   1. Run: just run"
+    @echo "   2. Open: http://localhost:5000/swagger"
+    @echo "   3. Login and test the API"
+    @echo ""
+

@@ -1,0 +1,170 @@
+# Task Management System - Technical Interview
+
+## Project Overview
+Backend API for a task management system built with .NET and Clean Architecture principles.
+This is a technical interview project focusing on TDD, manual data access, and authentication.
+
+## Technology Stack
+- .NET 10.0 / ASP.NET Core Web API
+- C# 12
+- Clean Architecture pattern
+- xUnit for testing
+- PostgreSQL
+- ADO.NET for data access (raw SQL)
+- JWT for authentication
+- Docker and Docker Compose for local development
+- Just command runner for automation
+
+## Important Constraints
+DO NOT USE: Entity Framework, Dapper, or MediatR
+
+## Architecture Layers
+
+Domain Layer:
+- Core business entities (Task, User)
+- Repository interfaces
+- Domain exceptions
+- No external dependencies
+
+Application Layer:
+- Use cases for business operations
+- DTOs and validation logic
+- Service interfaces
+- Depends only on Domain
+
+Infrastructure Layer:
+- Repository implementations using ADO.NET
+- JWT token generation
+- Password hashing
+- Database connection management
+
+API Layer:
+- Controllers for HTTP endpoints
+- Middleware for error handling and auth
+- Swagger documentation
+
+## Project Structure
+```
+src/
+├── TaskManagement.Domain/
+├── TaskManagement.Application/
+├── TaskManagement.Infrastructure/
+└── TaskManagement.API/
+
+tests/
+├── TaskManagement.Domain.Tests/
+├── TaskManagement.Application.Tests/
+├── TaskManagement.Infrastructure.Tests/
+└── TaskManagement.API.Tests/
+```
+
+## Development Approach
+
+Follow TDD:
+1. Write failing test first
+2. Implement minimum code to pass
+3. Refactor while keeping tests green
+
+Start development from the inside out:
+1. Domain entities with tests
+2. Repository interfaces
+3. Application use cases with tests
+4. Infrastructure implementations
+5. API controllers with integration tests
+
+## Business Rules
+
+Tasks:
+- Title required, max 200 characters
+- Description optional
+- Status: Pending, InProgress, or Completed
+- DueDate cannot be in the past
+- Users can only see their own tasks
+
+Users:
+- Email must be unique and valid
+- Password minimum 8 characters
+- Name required
+
+## Authentication
+
+Manual implementation required (no ASP.NET Identity):
+- User registration with password hashing (BCrypt)
+- Login with JWT token generation
+- Protected endpoints require valid JWT
+- Public endpoints: register, login
+- Protected endpoints: all task operations
+
+## Code Standards
+
+Naming:
+- Classes and methods: PascalCase
+- Variables: camelCase
+- Interfaces: IPascalCase prefix
+
+General:
+- Async/await for I/O operations
+- DTOs for API contracts, never expose entities
+- Dependency injection with proper lifetimes
+- Global exception middleware
+- Proper HTTP status codes
+
+Clean Code Principles:
+- Keep functions small and focused
+- Meaningful names that explain intent
+- Avoid premature optimization
+- Simple solutions over complex ones
+- Avoid over-engineering
+- Code should be self-documenting
+- Comments only when necessary to explain "why", not "what"
+
+## What to Avoid
+
+Never:
+- Use Entity Framework, Dapper, or MediatR
+- Expose domain entities in API responses
+- Put business logic in controllers
+- Access database from Application layer
+- Store passwords in plain text
+- Over-engineer simple solutions
+- Create abstractions before you need them
+- Write tests just to increase coverage numbers
+
+Keep it simple:
+- Start with the simplest solution that works
+- Add complexity only when needed
+- YAGNI: You Aren't Gonna Need It
+- Refactor when you see duplication, not before
+
+## Docker Setup
+
+Local development environment:
+- PostgreSQL runs in Docker container
+- API can run in Docker or locally via dotnet run
+- Docker Compose orchestrates services
+- Connection strings configured per environment
+- Volumes for data persistence
+
+Commands:
+- Start all services: docker-compose up -d
+- Start only database: docker-compose up -d postgres
+- Stop services: docker-compose down
+- Rebuild after changes: docker-compose up -d --build
+
+## Testing Requirements
+
+- Write meaningful tests, not hundreds of them
+- Focus on critical paths and business rules
+- Each test should cover a specific scenario
+- Prefer integration tests over mocking everything
+- Tests should be clear and easy to understand
+- Aim for quality over quantity
+- Test names should describe what they validate
+
+Test Coverage:
+- Happy path scenarios
+- Validation failures
+- Edge cases that matter
+- Authentication/authorization flows
+- Database operations (with test database)
+
