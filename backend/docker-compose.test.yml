@@ -1,0 +1,18 @@
+services:
+  postgres-test:
+    image: postgres:16-alpine
+    container_name: taskmanagement-test-db
+    environment:
+      POSTGRES_DB: taskmanagement_test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"  # Porta diferente para não conflitar com o banco principal
+    volumes:
+      - ./src/TaskManagement.Infrastructure/Data/Scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+

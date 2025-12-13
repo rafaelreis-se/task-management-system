@@ -111,5 +111,72 @@ public class TaskEntityTests
         // Assert
         Assert.Equal(TaskStatus.Completed, task.Status);
     }
+
+    [Fact]
+    public void CreateTask_WithNullDescription_ShouldSucceed()
+    {
+        // Arrange
+        var userId = Guid.NewGuid();
+        var dueDate = DateTime.UtcNow.AddDays(7);
+
+        // Act
+        var task = new TaskEntity(userId, "Title", null, dueDate);
+
+        // Assert
+        Assert.NotEqual(Guid.Empty, task.Id);
+        Assert.Null(task.Description);
+        Assert.Equal(TaskStatus.Pending, task.Status);
+    }
+
+    [Fact]
+    public void UpdateTask_WithNullDescription_ShouldSucceed()
+    {
+        // Arrange
+        var task = new TaskEntity(Guid.NewGuid(), "Original", "Desc", DateTime.UtcNow.AddDays(7));
+
+        // Act
+        task.Update("Updated", null, DateTime.UtcNow.AddDays(10));
+
+        // Assert
+        Assert.Equal("Updated", task.Title);
+        Assert.Null(task.Description);
+    }
+
+    [Fact]
+    public void UpdateTask_WithEmptyTitle_ShouldThrowException()
+    {
+        // Arrange
+        var task = new TaskEntity(Guid.NewGuid(), "Original", "Desc", DateTime.UtcNow.AddDays(7));
+
+        // Act & Assert
+        Assert.Throws<DomainException>(() =>
+            task.Update("", "Description", DateTime.UtcNow.AddDays(10)));
+    }
+
+    [Fact]
+    public void UpdateTask_WithPastDueDate_ShouldThrowException()
+    {
+        // Arrange
+        var task = new TaskEntity(Guid.NewGuid(), "Original", "Desc", DateTime.UtcNow.AddDays(7));
+
+        // Act & Assert
+        Assert.Throws<DomainException>(() =>
+            task.Update("Title", "Description", DateTime.UtcNow.AddDays(-1)));
+    }
+
+    [Fact]
+    public void UpdateTask_ShouldSetUpdatedAt()
+    {
+        // Arrange
+        var task = new TaskEntity(Guid.NewGuid(), "Original", "Desc", DateTime.UtcNow.AddDays(7));
+        var beforeUpdate = DateTime.UtcNow;
+
+        // Act
+        task.Update("Updated", "New Desc", DateTime.UtcNow.AddDays(10));
+
+        // Assert
+        Assert.NotNull(task.UpdatedAt);
+        Assert.True(task.UpdatedAt >= beforeUpdate);
+    }
 }
 

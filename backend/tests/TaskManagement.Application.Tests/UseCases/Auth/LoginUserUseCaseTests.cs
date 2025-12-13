@@ -92,6 +92,36 @@ public class LoginUserUseCaseTests
 
         // Assert
         Assert.Null(result);
+        _mockJwtTokenGenerator.Verify(g => g.GenerateToken(It.IsAny<User>()), Times.Never);
+    }
+
+    [Fact]
+    public async Task Execute_ShouldGenerateTokenWithCorrectUser()
+    {
+        // Arrange
+        var request = new LoginRequest("jane@example.com", "Password123");
+        var user = new User("Jane Doe", "jane@example.com", "hashed_password");
+
+        _mockUserRepository
+            .Setup(r => r.GetByEmailAsync(request.Email))
+            .ReturnsAsync(user);
+
+        _mockPasswordHasher
+            .Setup(h => h.VerifyPassword(request.Password, user.PasswordHash))
+            .Returns(true);
+
+        _mockJwtTokenGenerator
+            .Setup(g => g.GenerateToken(user))
+            .Returns("token_for_jane");
+
+        // Act
+        var result = await _useCase.ExecuteAsync(request);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(user.Name, result.User.Name);
+        Assert.Equal(user.Email, result.User.Email);
+        _mockJwtTokenGenerator.Verify(g => g.GenerateToken(user), Times.Once);
     }
 }
 

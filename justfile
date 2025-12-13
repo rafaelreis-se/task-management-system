@@ -72,15 +72,39 @@ clean:
 # 🧪 Testing
 # ═══════════════════════════════════════════════════════════
 
-# Run all tests
+# Run all tests (automatically manages test database)
 test:
-    @echo "🧪 Running backend tests..."
-    @cd backend && dotnet test
+    #!/usr/bin/env bash
+    set -e
+    cd backend
+    echo "🐘 Starting test database..."
+    docker-compose -f docker-compose.test.yml up -d
+    echo "⏳ Waiting for database to be ready..."
+    MAX_TRIES=30
+    COUNTER=0
+    until docker exec taskmanagement-test-db pg_isready -U postgres > /dev/null 2>&1; do
+        COUNTER=$((COUNTER+1))
+        if [ $COUNTER -gt $MAX_TRIES ]; then
+            echo "❌ Database failed to start!"
+            docker-compose -f docker-compose.test.yml down
+            exit 1
+        fi
+        sleep 1
+        echo "  Waiting... ($COUNTER/$MAX_TRIES)"
+    done
+    echo "✅ Database is ready!"
+    echo "🧪 Running tests..."
+    if dotnet test; then
+        echo "✅ All tests passed!"
+        docker-compose -f docker-compose.test.yml down
+    else
+        echo "❌ Tests failed!"
+        docker-compose -f docker-compose.test.yml down
+        exit 1
+    fi
 
-# Run tests with coverage
-test-cov:
-    @echo "📊 Running tests with coverage..."
-    @cd backend && ./show-coverage.sh
+# Run tests with coverage (same as test for now)
+test-cov: test
 
 # Watch tests (auto-run on changes)
 test-watch:

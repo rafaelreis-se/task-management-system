@@ -72,7 +72,39 @@ public class RegisterUserUseCaseTests
         var request = new RegisterRequest("John Doe", "john@example.com", "short");
 
         // Act & Assert
-        await Assert.ThrowsAsync<DomainException>(() => _useCase.ExecuteAsync(request));
+        var exception = await Assert.ThrowsAsync<DomainException>(() => _useCase.ExecuteAsync(request));
+        Assert.Contains("8 characters", exception.Message);
+        _mockPasswordHasher.Verify(h => h.HashPassword(It.IsAny<string>()), Times.Never);
+    }
+
+    [Fact]
+    public async Task Execute_ShouldHashPasswordBeforeSaving()
+    {
+        // Arrange
+        var request = new RegisterRequest("Test User", "test@example.com", "ValidPassword123");
+        var hashedPassword = "super_secure_hash";
+
+        _mockUserRepository
+            .Setup(r => r.EmailExistsAsync(request.Email))
+            .ReturnsAsync(false);
+
+        _mockPasswordHasher
+            .Setup(h => h.HashPassword(request.Password))
+            .Returns(hashedPassword);
+
+        User? capturedUser = null;
+        _mockUserRepository
+            .Setup(r => r.CreateAsync(It.IsAny<User>()))
+            .Callback<User>(u => capturedUser = u)
+            .ReturnsAsync((User u) => u);
+
+        // Act
+        await _useCase.ExecuteAsync(request);
+
+        // Assert
+        Assert.NotNull(capturedUser);
+        Assert.Equal(hashedPassword, capturedUser.PasswordHash);
+        _mockPasswordHasher.Verify(h => h.HashPassword(request.Password), Times.Once);
     }
 }
 
