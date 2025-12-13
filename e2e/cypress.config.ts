@@ -12,7 +12,7 @@ export default defineConfig({
     defaultCommandTimeout: 10000,
     requestTimeout: 10000,
     env: {
-      apiUrl: 'http://localhost:5000/api',
+      apiUrl: 'http://localhost:5001/api',
     },
     setupNodeEvents(on, config) {
       // implement node event listeners here

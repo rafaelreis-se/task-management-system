@@ -2,11 +2,12 @@
 -- Password for all users: TestPassword123
 -- Hashed using BCrypt
 
+-- Password: TestPassword123 (BCrypt hash)
 INSERT INTO users (id, name, email, password_hash, created_at)
 VALUES 
-    ('a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d', 'John Doe', 'john@example.com', '$2a$11$XKfkL3Z8P5wQJ9fJ7Y3VaeZQX5K4vX8N9wZYq5N6Z7P8Q9R0S1T2U', NOW()),
-    ('b2c3d4e5-f6a7-5b6c-9d0e-1f2a3b4c5d6e', 'Jane Smith', 'jane@example.com', '$2a$11$XKfkL3Z8P5wQJ9fJ7Y3VaeZQX5K4vX8N9wZYq5N6Z7P8Q9R0S1T2U', NOW()),
-    ('c3d4e5f6-a7b8-6c7d-0e1f-2a3b4c5d6e7f', 'Bob Wilson', 'bob@example.com', '$2a$11$XKfkL3Z8P5wQJ9fJ7Y3VaeZQX5K4vX8N9wZYq5N6Z7P8Q9R0S1T2U', NOW())
+    ('a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d', 'John Doe', 'john@example.com', '$2a$11$Ooka39U.xbhvwvCwUDY5OuluTT2sjBQ3BJlcrBRqY6nUvD.SPqf36', NOW()),
+    ('b2c3d4e5-f6a7-5b6c-9d0e-1f2a3b4c5d6e', 'Jane Smith', 'jane@example.com', '$2a$11$Ooka39U.xbhvwvCwUDY5OuluTT2sjBQ3BJlcrBRqY6nUvD.SPqf36', NOW()),
+    ('c3d4e5f6-a7b8-6c7d-0e1f-2a3b4c5d6e7f', 'Bob Wilson', 'bob@example.com', '$2a$11$Ooka39U.xbhvwvCwUDY5OuluTT2sjBQ3BJlcrBRqY6nUvD.SPqf36', NOW())
 ON CONFLICT (id) DO NOTHING;
 
 -- Insert test tasks for John Doe

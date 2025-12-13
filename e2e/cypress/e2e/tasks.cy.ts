@@ -97,6 +97,32 @@ describe('Task Management', () => {
       cy.get('[role="dialog"]').should('not.exist');
       cy.contains(updatedTitle).should('be.visible');
     });
+
+    it('should update task status', () => {
+      // Find a task card and click edit
+      cy.get('.MuiCard-root').first().within(() => {
+        cy.get('[aria-label="Edit task"]').click();
+      });
+      
+      // Edit dialog should appear
+      cy.get('[role="dialog"]').should('be.visible');
+      
+      // Change status using the select dropdown
+      cy.get('[role="dialog"]').within(() => {
+        cy.get('[name="status"]').parent().click();
+      });
+      
+      // Select "In Progress" from dropdown
+      cy.get('[role="listbox"]').contains('In Progress').click();
+      
+      // Submit the form
+      cy.get('[role="dialog"]').within(() => {
+        cy.contains('button', 'Update').click();
+      });
+      
+      // Dialog should close (no error)
+      cy.get('[role="dialog"]').should('not.exist');
+    });
   });
 
   describe('Delete Task', () => {
