@@ -412,8 +412,7 @@ Script to:
 3. **PROJECT_SUMMARY.md** - For interview presentation
 4. **GENAI_USAGE.md** - AI tool usage documentation
 5. **IMPLEMENTATION_PLAN.md** - This document
-6. **COMMANDS.md** - Quick command reference
-7. **docs/ARCHITECTURE.md** - Architecture details
+6. **docs/ARCHITECTURE.md** - Architecture details
 8. **docs/DATABASE.md** - Database schema
 9. **docs/API.md** - API endpoints
 10. **docs/TDD.md** - Testing strategy

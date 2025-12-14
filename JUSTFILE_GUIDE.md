@@ -1,8 +1,8 @@
 # Just Command Runner Guide
 
-Este projeto usa [Just](https://github.com/casey/just) como task runner para simplificar comandos comuns.
+This project uses [Just](https://github.com/casey/just) as a task runner to simplify common commands.
 
-##  Instalação do Just
+## Installing Just
 
 ### macOS
 ```bash
@@ -16,222 +16,99 @@ curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -
 
 ### Windows
 ```bash
-cargo install just
-# ou
 scoop install just
+# or
+cargo install just
 ```
 
-##  Comandos Principais (Raiz do Projeto)
+## Available Commands
 
-### Início Rápido
+Run `just` from the project root to see all available commands:
+
 ```bash
-# Ver todos os comandos disponíveis
 just
-
-# Setup completo (primeira vez)
-just setup
-
-# Iniciar tudo em modo desenvolvimento
-just dev
-
-# Parar todos os serviços
-just stop
 ```
 
-### Desenvolvimento
-```bash
-# Instalar/atualizar dependências
-just install
+### Main Commands
 
-# Build de tudo
-just build
+| Command | Description |
+|---------|-------------|
+| `just setup` | First-time setup - installs all dependencies (.NET packages, npm modules) |
+| `just dev` | Start all services (database + backend + frontend) with seed data |
+| `just stop` | Stop all running services |
 
-# Limpar artifacts
-just clean
-```
+### Testing
 
-### Testes
-```bash
-# Executar todos os testes (72 tests com banco isolado)
-just test
+| Command | Description |
+|---------|-------------|
+| `just test` | Run all .NET tests (unit + integration) with isolated test database |
+| `just e2e` | Run Cypress end-to-end tests (starts all services automatically) |
 
-# Assistir testes (auto-run)
-just test-watch
-```
+### Build
 
-### Database
-```bash
-# Iniciar banco
-just db-up
+| Command | Description |
+|---------|-------------|
+| `just build` | Build both backend and frontend projects |
 
-# Parar banco
-just db-down
+## Typical Workflow
 
-# Resetar banco (limpar + recriar + seed)
-just db-reset
-
-# Conectar ao banco via CLI
-just db-shell
-```
-
-### Demo/Apresentação
-```bash
-# Preparar ambiente para demo
-just demo
-
-# Ver informações do projeto
-just info
-```
-
-##  Comandos por Área
-
-### Backend Específico
-```bash
-# Da raiz do projeto
-just backend-dev        # Iniciar backend em dev mode
-just backend-test       # Testes do backend
-just backend-db-up      # Só o banco
-
-# Ou dentro de /backend
-cd backend
-just run-watch          # Rodar com hot reload
-just test              # Testes
-just db-setup          # Setup do banco
-```
-
-### Frontend Específico
-```bash
-# Da raiz do projeto
-just frontend-dev       # Iniciar frontend em dev mode
-just frontend-build     # Build para produção
-just frontend-lint      # Lint do código
-
-# Ou dentro de /frontend
-cd frontend
-just dev               # Dev server
-just build             # Build
-just lint              # Lint
-```
-
-##  Workflow Típico
-
-### Primeira Vez (Setup)
-```bash
-# 1. Configurar tudo
-just setup
-
-# 2. Iniciar servidores
-just dev
-```
-
-### Dia a Dia
-```bash
-# Iniciar desenvolvimento
-just dev
-
-# Em outro terminal, rodar testes
-just test-watch
-
-# Quando terminar
-just stop
-```
-
-### Antes da Apresentação
-```bash
-# Reset completo do ambiente
-just demo
-
-# Depois, iniciar
-just dev
-
-# Abrir browser:
-# Frontend: http://localhost:5173
-# Backend:  http://localhost:5000
-```
-
-##  Estrutura de Justfiles
-
-```
-/justfile              # Comandos principais (monorepo)
-/backend/justfile      # Comandos específicos do backend
-/frontend/justfile     # Comandos específicos do frontend
-```
-
-##  Dicas
-
-### Ver todos os comandos
-```bash
-just --list           # Da raiz
-cd backend && just    # Backend
-cd frontend && just   # Frontend
-```
-
-### Executar múltiplos comandos
-```bash
-just setup && just dev
-```
-
-### Comandos em paralelo (flag -j)
-O comando `just dev` já usa `-j2` para rodar backend e frontend em paralelo.
-
-### Help
-```bash
-just help    # Mostra informações do projeto
-just info    # Alias para help
-```
-
-##  Customização
-
-Os justfiles são editáveis! Adicione seus próprios comandos:
-
-```justfile
-# No justfile da raiz
-my-command:
-    @echo "Meu comando customizado"
-    @just backend-test
-    @just frontend-lint
-```
-
-## 📖 Comandos Mais Usados
-
-| Comando | O que faz |
-|---------|-----------|
-| `just` | Lista comandos |
-| `just setup` | Setup inicial |
-| `just dev` | Inicia tudo |
-| `just test` | Roda testes |
-| `just db-reset` | Reseta banco |
-| `just demo` | Prepara demo |
-| `just stop` | Para tudo |
-
-## 🔥 Atalhos Úteis
+### First Time Setup
 
 ```bash
-# Setup + iniciar
-just setup && just dev
-
-# Reset completo
-just clean && just setup
-
-# Teste rápido
-just test
-
-# Demo completo
-just demo && just dev
+just setup    # Install all dependencies
+just dev      # Start everything
 ```
 
-##  Mais Informações
+Open http://localhost:5173 and login with demo credentials.
+
+### Daily Development
+
+```bash
+just dev      # Start all services
+# ... work on code ...
+just stop     # Stop when done
+```
+
+### Running Tests
+
+```bash
+just test     # Run unit and integration tests
+just e2e      # Run end-to-end tests
+```
+
+## What Each Command Does
+
+### `just setup`
+- Restores .NET packages (`dotnet restore`)
+- Installs frontend npm packages (`npm install`)
+- Installs e2e npm packages (`npm install`)
+
+### `just dev`
+- Starts PostgreSQL container via Docker
+- Waits for database to be ready
+- Runs SQL scripts to create tables and seed demo data
+- Starts backend API on http://localhost:5001
+- Starts frontend dev server on http://localhost:5173
+
+### `just stop`
+- Stops PostgreSQL container
+- Kills backend and frontend processes
+
+### `just test`
+- Starts isolated test database on port 5433
+- Runs all .NET tests (Domain, Application, Infrastructure, Integration)
+- Stops test database when done
+
+### `just e2e`
+- Starts test database, backend, and frontend
+- Runs Cypress tests
+- Cleans up all services when done
+
+### `just build`
+- Builds backend (`dotnet build`)
+- Builds frontend (`npm run build`)
+
+## More Information
 
 - Just Documentation: https://just.systems
 - Project README: [README.md](./README.md)
-- Backend Guide: [backend/README.md](./backend/README.md)
-- Frontend Guide: [frontend/README.md](./frontend/README.md)
-
----
-
-**Nota:** Se preferir, você ainda pode usar os comandos tradicionais:
-- Backend: `cd backend && dotnet run`
-- Frontend: `cd frontend && npm run dev`
-
-Mas o Just torna tudo mais simples e padronizado! 
-

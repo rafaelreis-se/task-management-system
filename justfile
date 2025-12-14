@@ -60,7 +60,7 @@ stop:
 # Testing
 # ═══════════════════════════════════════════════════════════
 
-# Run unit tests (.NET)
+# Run all tests - unit and integration (.NET)
 test:
     #!/usr/bin/env bash
     set -e
@@ -73,7 +73,7 @@ test:
         sleep 1
     done
     
-    echo "Running tests..."
+    echo "Running unit and integration tests..."
     if dotnet test; then
         echo "All tests passed!"
         docker-compose -f docker-compose.test.yml down

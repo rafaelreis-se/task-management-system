@@ -1,314 +1,245 @@
 # Task Management System
 
-Full-stack web application with .NET Core backend and React frontend, built following Clean Architecture principles and Test-Driven Development (TDD).
+Full-stack task management application built with .NET 10 and React, following Clean Architecture principles and Test-Driven Development (TDD).
 
-## Project Overview
+## Prerequisites
 
-This is a technical interview exercise demonstrating:
-- Clean Architecture (backend)
-- Test-Driven Development (TDD)
-- RESTful API design
-- JWT authentication
-- Modern frontend with React & TypeScript
-- Full CRUD operations
-- Responsive UI design
+Before running this project, ensure you have the following installed:
 
-## Architecture
+| Tool | Version | Installation |
+|------|---------|--------------|
+| Docker | Latest | [docker.com](https://www.docker.com/get-started) |
+| .NET SDK | 10.0+ | [dotnet.microsoft.com](https://dotnet.microsoft.com/download/dotnet/10.0) |
+| Node.js | 18+ | [nodejs.org](https://nodejs.org/) |
+| just | Latest | [github.com/casey/just](https://github.com/casey/just#installation) |
 
-### Backend (.NET Core 8)
-- **Clean Architecture** with separation of concerns
-- **Layers**: API -> Application -> Domain -> Infrastructure
-- **No Entity Framework or Dapper** - Custom data access using Npgsql
-- **JWT Authentication** with secure password hashing
-- **Unit Tests** with xUnit (72 comprehensive tests)
-- **PostgreSQL** database
+### Verify Installation
 
-### Frontend (React + TypeScript)
-- **Component-based architecture**
-- **Material-UI** for consistent design
-- **React Router** for navigation
-- **Axios** for API communication
-- **React Hook Form** for form handling
-- **Responsive design** for all devices
+```bash
+docker --version    # Docker version 24.x or higher
+dotnet --version    # 10.0.x
+node --version      # v18.x or higher
+just --version      # just 1.x
+```
 
 ## Quick Start
 
-### Prerequisites
-- .NET 8 SDK
-- Node.js 18+
-- PostgreSQL 14+
-- Docker (optional, for containerized setup)
-
-### Option 1: Manual Setup
-
-#### Backend
-```bash
-cd backend
-./setup.sh  # Initialize database and seed data
-dotnet run --project src/TaskManagement.API
-```
-Backend will be available at: http://localhost:5000
-
-#### Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-```
-Frontend will be available at: http://localhost:5173
-
-### Option 2: Docker Setup (Recommended)
+### 1. Clone and Setup
 
 ```bash
-cd backend
-docker-compose up
+git clone <repository-url>
+cd ballastlane
+just setup
 ```
 
-Then start the frontend:
+This installs all dependencies (.NET packages, npm modules).
+
+### 2. Start the Application
+
 ```bash
-cd frontend
-npm install
-npm run dev
+just dev
 ```
+
+This command will:
+- Start PostgreSQL database (via Docker)
+- Initialize database schema
+- Seed demo data
+- Start backend API on http://localhost:5001
+- Start frontend on http://localhost:5173
+
+### 3. Open the Application
+
+Open your browser at **http://localhost:5173**
 
 ## Demo Credentials
 
+The application comes with seeded test data for demo purposes:
+
+| User | Email | Password |
+|------|-------|----------|
+| John Doe | john@example.com | TestPassword123 |
+| Jane Smith | jane@example.com | TestPassword123 |
+| Bob Wilson | bob@example.com | TestPassword123 |
+
+Each user has pre-created tasks to demonstrate the application.
+
+## Available Commands
+
+```bash
+just setup      # First-time setup (install dependencies)
+just dev        # Start all services for development/demo
+just stop       # Stop all running services
+just test       # Run all tests (unit + integration)
+just e2e        # Run end-to-end tests
+just build      # Build all projects
 ```
-Email: john@example.com
-Password: TestPassword123
-```
-
-Additional test users are seeded in the database. See `backend/src/TaskManagement.Infrastructure/Data/seed.sql`
-
-## Features
-
-### User Authentication
-- Register new account with validation
-- Login with JWT token
-- Secure password hashing (BCrypt)
-- Protected API endpoints
-- Automatic logout on token expiration
-
-### Task Management
-- Create tasks with title, description, and due date
-- View all tasks for authenticated user
-- Update task details and status
-- Delete tasks
-- Filter by status (Pending, In Progress, Completed)
-- Visual indicators for overdue tasks
-- Task counts by status
-
-### User Experience
-- Clean, modern UI with Material Design
-- Responsive layout for mobile and desktop
-- Real-time form validation
-- Loading states and error handling
-- Success/error notifications
-- Confirmation dialogs for destructive actions
 
 ## Project Structure
 
 ```
-.
-├── backend/                 # .NET Core API
+ballastlane/
+├── backend/                    # .NET 10 API
 │   ├── src/
-│   │   ├── TaskManagement.API/          # Web API layer
-│   │   ├── TaskManagement.Application/  # Use cases & DTOs
-│   │   ├── TaskManagement.Domain/       # Entities & business logic
-│   │   └── TaskManagement.Infrastructure/ # Data access & auth
-│   ├── tests/              # Unit tests
-│   ├── docs/               # Documentation
-│   └── docker-compose.yml  # Docker setup
-│
-└── frontend/               # React application
-    ├── src/
-    │   ├── components/     # Reusable UI components
-    │   ├── pages/         # Route pages
-    │   ├── services/      # API integration
-    │   ├── context/       # State management
-    │   └── types/         # TypeScript definitions
-    └── docs/              # Frontend documentation
+│   │   ├── TaskManagement.API/           # REST API controllers
+│   │   ├── TaskManagement.Application/   # Use cases and DTOs
+│   │   ├── TaskManagement.Domain/        # Entities and business rules
+│   │   └── TaskManagement.Infrastructure/# Data access and auth
+│   └── tests/                  # Unit and integration tests
+├── frontend/                   # React + TypeScript
+│   └── src/
+│       ├── components/         # Reusable UI components
+│       ├── pages/              # Route pages
+│       ├── services/           # API integration
+│       └── context/            # State management
+├── e2e/                        # Cypress E2E tests
+└── justfile                    # Task runner commands
 ```
+
+## Technology Stack
+
+### Backend
+- .NET 10 / ASP.NET Core Web API
+- PostgreSQL 16 (via Docker)
+- Custom data access with Npgsql (no EF/Dapper)
+- JWT authentication with BCrypt password hashing
+- xUnit for testing
+
+### Frontend
+- React 18 + TypeScript
+- Material-UI (MUI) component library
+- React Router for navigation
+- Axios for API communication
+- React Hook Form for form handling
+
+## Architecture
+
+This project follows **Clean Architecture** principles:
+
+- **Domain Layer**: Core business entities and rules
+- **Application Layer**: Use cases, DTOs, and interfaces
+- **Infrastructure Layer**: Database access, external services
+- **API Layer**: Controllers and HTTP handling
+
+Key design decisions:
+- No Entity Framework, Dapper, or MediatR (as per requirements)
+- Business logic isolated in Domain layer
+- DTOs for API contracts (entities never exposed)
+- Repository pattern for data access
 
 ## Testing
 
-### Backend Tests
+### Unit and Integration Tests
+
 ```bash
-just test              # Runs all tests with isolated test database
+just test
 ```
 
-The test database runs on port 5433 (isolated from dev on 5432) and is automatically managed.
+Runs all .NET tests (unit + integration) with an isolated test database:
 
-## Documentation
+- **Domain Tests**: Entity validation and business rules
+- **Application Tests**: Use case logic
+- **Infrastructure Tests**: Auth services (JWT, password hashing)
+- **Integration Tests**: Repository operations with real database
 
-### Backend
-- [Architecture](./backend/docs/ARCHITECTURE.md)
-- [API Endpoints](./backend/docs/API.md)
-- [Database Schema](./backend/docs/DATABASE.md)
-- [Docker Setup](./backend/docs/DOCKER.md)
-- [TDD Approach](./backend/docs/TDD.md)
-- [GenAI Usage](./backend/docs/GENAI_USAGE.md)
+### E2E Tests (Cypress)
 
-### Frontend
-- [Architecture](./frontend/docs/ARCHITECTURE.md)
-- [API Integration](./frontend/docs/API_INTEGRATION.md)
-- [Implementation Plan](./frontend/IMPLEMENTATION_PLAN.md)
+```bash
+just e2e
+```
 
-### Setup Guides
-- [Backend Setup](./backend/SETUP.md)
-- [Frontend Setup](./frontend/README.md)
+Cypress is a JavaScript-based end-to-end testing framework that runs tests directly in the browser. I chose it to validate that the frontend and backend work correctly together, simulating real user interactions like login, creating tasks, and navigating through the application.
 
 ## API Endpoints
 
 ### Authentication
 - `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - Login and get JWT token
+- `POST /api/auth/login` - Login (returns JWT token)
 
-### Tasks (Protected)
-- `GET /api/tasks` - Get all tasks for user
+### Tasks (Protected - requires JWT)
+- `GET /api/tasks` - Get all tasks for current user
 - `GET /api/tasks/{id}` - Get task by ID
 - `POST /api/tasks` - Create new task
 - `PUT /api/tasks/{id}` - Update task
 - `DELETE /api/tasks/{id}` - Delete task
 
-## Technical Highlights
+## Features
 
-### Clean Architecture
-- Clear separation of concerns
-- Business logic in Domain layer
-- Infrastructure independence
-- Testable components
-
-### Test-Driven Development
-- Tests written before implementation
-- 72 comprehensive tests covering all layers
-- Unit tests for all layers
-- Integration tests for API endpoints
-
-### Security
-- JWT token authentication
-- BCrypt password hashing
-- Protected API endpoints
-- CORS configuration
-- Input validation
-
-### Modern Frontend
-- TypeScript for type safety
-- React Hooks for state management
-- Material-UI components
-- Responsive design
-- Error boundaries
-
-### Database Design
-- Normalized schema
-- Foreign key relationships
-- Indexes for performance
-- Migration scripts
-- Seed data for testing
-
-## Development Tools
-
-### Backend
-- **.NET 8** - Latest LTS framework
-- **xUnit** - Unit testing
-- **Npgsql** - PostgreSQL driver
-- **BCrypt.Net** - Password hashing
-- **JWT Bearer** - Authentication
-
-### Frontend
-- **Vite** - Fast build tool
-- **React 18** - UI library
-- **TypeScript** - Type safety
-- **Material-UI** - Component library
-- **Axios** - HTTP client
-
-### Infrastructure
-- **PostgreSQL** - Relational database
-- **Docker** - Containerization
-- **Docker Compose** - Multi-container setup
-
-## GenAI Tool Usage
-
-This project was developed with the assistance of AI coding tools, demonstrating:
-
-### Prompting Strategy
-- Clear, specific prompts with context
-- Incremental development approach
-- Validation of generated code
-- Critical thinking about suggestions
-
-### Code Validation
-- Testing all AI-generated code
-- Reviewing for best practices
-- Ensuring Clean Architecture principles
-- Verifying security implementations
-
-### Edge Cases Handled
-- Null reference checks
-- Validation for all inputs
-- Error handling and logging
-- Concurrent request handling
-- Date/time handling across timezones
-
-See [GenAI Usage Documentation](./backend/docs/GENAI_USAGE.md) for detailed examples.
-
-## Presentation Checklist
-
-- [x] User story and requirements
-- [x] Architecture overview
-- [x] Live demo (login, CRUD operations)
-- [x] Code walkthrough
-- [x] Test suite review (72 tests)
-- [x] Database schema explanation
-- [x] Security implementation
-- [x] GenAI tool usage examples
-- [x] Responsive design showcase
-- [x] Error handling demonstration
+- User registration and authentication
+- Create, read, update, delete tasks
+- Task status management (Pending, In Progress, Completed)
+- Due date tracking with overdue indicators
+- Filter tasks by status
+- Responsive design for mobile and desktop
 
 ## Troubleshooting
 
-### Backend Issues
-- Check PostgreSQL is running
-- Verify connection string in `appsettings.json`
-- Run `./setup.sh` to initialize database
-- Check port 5000 is available
+### Port already in use
 
-### Frontend Issues
-- Ensure backend is running on port 5000
-- Check Node.js version (18+)
-- Clear browser cache and localStorage
-- Verify API URL in frontend constants
+```bash
+just stop        # Stop all services
+just dev         # Start again
+```
 
-### Database Issues
-- Check PostgreSQL service status
-- Verify credentials in connection string
-- Run migration scripts manually if needed
-- Check database logs for errors
+### Database connection issues
 
-## Future Enhancements
+```bash
+docker ps        # Check if PostgreSQL container is running
+just stop        # Stop everything
+just dev         # Restart
+```
 
-Potential improvements for production:
-- [ ] Refresh token mechanism
-- [ ] Task categories and tags
-- [ ] Task search functionality
-- [ ] Email notifications
-- [ ] Task comments and collaboration
-- [ ] File attachments
-- [ ] Advanced filtering and sorting
-- [ ] Performance monitoring
-- [ ] Automated frontend tests
-- [ ] CI/CD pipeline
+### Clean start
+
+```bash
+just stop
+cd backend && docker-compose down -v   # Remove database volume
+just dev                                # Fresh start with new seed data
+```
+
+## Documentation
+
+Additional documentation is available in the project:
+
+- [Backend Architecture](./backend/docs/ARCHITECTURE.md)
+- [API Documentation](./backend/docs/API.md)
+- [Database Schema](./backend/docs/DATABASE.md)
+- [TDD Approach](./backend/docs/TDD.md)
+- [GenAI Usage](./backend/docs/GENAI_USAGE.md)
+- [Presentation Guide](./PRESENTATION_GUIDE.md)
+
+## GenAI Development Approach
+
+This project was developed with AI assistance (Cursor IDE). To provide context and maintain consistency, I created configuration files that describe the project requirements, constraints, and coding standards:
+
+### Cursor Rules (`.cursorrules`)
+
+These files act as "pre-prompts" that give the AI context about the project before each interaction. Each folder has its own rules file with specific context:
+
+| File | Purpose |
+|------|---------|
+| `backend/.cursorrules` | Backend-specific context: Clean Architecture layers, .NET conventions, TDD approach, business rules for tasks and users, authentication requirements, code standards |
+| `frontend/.cursorrules` | Frontend-specific context: React patterns, component structure, state management rules, API integration guidelines, code standards |
+
+When working in a specific folder, Cursor automatically loads the corresponding rules file, ensuring the AI follows the right conventions for that part of the codebase.
+
+### Backend Documentation (`backend/docs/`)
+
+Technical reference documents that I used to maintain consistency:
+
+| Document | Description |
+|----------|-------------|
+| `ARCHITECTURE.md` | Detailed explanation of Clean Architecture implementation and layer responsibilities |
+| `API.md` | API endpoint specifications, request/response formats, and authentication flow |
+| `DATABASE.md` | PostgreSQL schema design, table relationships, and SQL scripts |
+| `TDD.md` | Test-Driven Development methodology and testing strategy |
+| `GENAI_USAGE.md` | Examples of prompts used and how AI suggestions were validated |
+
+These documents served as a knowledge base that I could reference during development and share with the AI to ensure generated code followed the established patterns.
 
 ## Author
 
 Rafael Reis
 
-## License
-
-This project is created for interview purposes.
-
 ---
 
-**Tech Stack**: .NET 8 | React 18 | TypeScript | PostgreSQL | Material-UI | Docker
-
-**Architecture**: Clean Architecture | TDD | RESTful API | JWT Auth | Responsive Design
+**Stack**: .NET 10 | React 18 | TypeScript | PostgreSQL | Material-UI | Docker

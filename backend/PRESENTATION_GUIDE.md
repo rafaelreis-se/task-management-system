@@ -167,7 +167,6 @@ A: "Just is more modern, cross-platform, has simpler syntax without Make's tab i
 **Quick References:**
 - `PROJECT_SUMMARY.md` - Project overview
 - `TEST_RESULTS.md` - Test suite details
-- `COMMANDS.md` - All useful commands
 
 ## Demo Script
 
