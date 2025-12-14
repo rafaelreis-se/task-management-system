@@ -10,7 +10,7 @@ public class TestDatabaseFixture : IDisposable
 
     public TestDatabaseFixture()
     {
-        // Usa variável de ambiente ou fallback para porta de teste
+        // Use environment variable or fallback to test port
         var port = Environment.GetEnvironmentVariable("TEST_DB_PORT") ?? "5433";
         var database = Environment.GetEnvironmentVariable("TEST_DB_NAME") ?? "taskmanagement_test";
         
