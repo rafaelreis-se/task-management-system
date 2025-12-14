@@ -7,12 +7,14 @@ End-to-end tests using [Cypress](https://www.cypress.io/) to validate the comple
 From the project root:
 
 ```bash
-# First time - install all dependencies (includes e2e)
+# First time - install all dependencies (includes Cypress)
 just setup
 
 # Run all E2E tests
 just e2e
 ```
+
+**Note:** Cypress is installed automatically when you run `just setup`. No additional installation needed.
 
 The `just e2e` command will automatically:
 1. Start test database (port 5433, isolated from dev)
