@@ -87,6 +87,10 @@ test:
 e2e:
     #!/usr/bin/env bash
     set -e
+    
+    # Fix Cypress issue with Cursor IDE's ELECTRON_RUN_AS_NODE
+    unset ELECTRON_RUN_AS_NODE
+    
     ROOT_DIR="$(pwd)"
     
     cleanup() {
