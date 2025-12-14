@@ -2,6 +2,14 @@
 
 Full-stack task management application built with .NET 10 and React, following Clean Architecture principles and Test-Driven Development (TDD).
 
+## User Story
+
+> **As a** busy professional,  
+> **I need** a simple way to manage my daily tasks with titles, descriptions, and due dates,  
+> **So that** I can stay organized, track my progress, and ensure nothing important is forgotten.
+
+See [USER_STORY.md](./USER_STORY.md) for complete acceptance criteria and business rules.
+
 ## Prerequisites
 
 Before running this project, ensure you have the following installed:
@@ -205,7 +213,6 @@ Additional documentation is available in the project:
 - [Database Schema](./backend/docs/DATABASE.md)
 - [TDD Approach](./backend/docs/TDD.md)
 - [GenAI Usage](./backend/docs/GENAI_USAGE.md)
-- [Presentation Guide](./PRESENTATION_GUIDE.md)
 
 ## GenAI Development Approach
 
@@ -235,6 +242,17 @@ Technical reference documents that I used to maintain consistency:
 | `GENAI_USAGE.md` | Examples of prompts used and how AI suggestions were validated |
 
 These documents served as a knowledge base that I could reference during development and share with the AI to ensure generated code followed the established patterns.
+
+### Implementation Plans
+
+Before starting development, I asked Cursor to generate detailed implementation plans for both backend and frontend. These plans were reviewed and refined until they accurately reflected the architecture, phases, and approach I wanted to follow:
+
+| Plan | Description |
+|------|-------------|
+| [backend/IMPLEMENTATION_PLAN.md](./backend/IMPLEMENTATION_PLAN.md) | Detailed TDD phases, layer-by-layer development approach, testing strategy, and technical decisions for the .NET API |
+| [frontend/IMPLEMENTATION_PLAN.md](./frontend/IMPLEMENTATION_PLAN.md) | Component structure, API integration approach, and development phases for the React frontend |
+
+These plans served as a roadmap during development, ensuring a systematic approach to building the application.
 
 ## Author
 

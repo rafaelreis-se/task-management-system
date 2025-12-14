@@ -150,21 +150,4 @@ Manual testing of:
 - Logout and login again
 - Responsive on mobile/tablet
 
-## For Interview
-
-Highlight:
-- Clean component structure
-- TypeScript usage
-- API integration
-- Form validation
-- Error handling
-- Responsive design
-- Simple, maintainable code
-
-Show understanding of:
-- React best practices
-- Material UI usage
-- REST API integration
-- JWT authentication
-- User experience
 

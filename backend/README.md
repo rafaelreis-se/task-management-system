@@ -132,7 +132,6 @@ docker exec -i taskmanagement-db psql -U postgres -d taskmanagement < src/TaskMa
 
 ## Documentation
 
-- **[SETUP.md](SETUP.md)** - Complete setup and usage guide
 - **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** - Architecture overview and design decisions
 - **[docs/DATABASE.md](docs/DATABASE.md)** - Database schema and relationships
 - **[docs/API.md](docs/API.md)** - API endpoints documentation

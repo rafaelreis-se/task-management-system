@@ -4,37 +4,22 @@ End-to-end tests using [Cypress](https://www.cypress.io/) to validate the comple
 
 ## Quick Start
 
-### Option 1: Full Automated Run (Recommended)
-
-From the monorepo root:
+From the project root:
 
 ```bash
-# First time only - install dependencies
-just e2e-install
+# First time - install all dependencies (includes e2e)
+just setup
 
-# Run all E2E tests (starts db, backend, frontend automatically)
+# Run all E2E tests
 just e2e
 ```
 
-This command will:
-1. Start test database (reuses `backend/docker-compose.test.yml`, port 5433)
-2. Database schema and seed data auto-loaded via docker volume
-3. Start backend API (pointing to test database)
-4. Start frontend
-5. Run all Cypress tests
-6. Clean up everything after tests complete
-
-### Option 2: Interactive Mode
-
-If you want to run tests interactively while developing:
-
-```bash
-# Terminal 1: Start the dev environment
-just dev
-
-# Terminal 2: Open Cypress UI
-just e2e-open
-```
+The `just e2e` command will automatically:
+1. Start test database (port 5433, isolated from dev)
+2. Start backend API
+3. Start frontend
+4. Run all Cypress tests
+5. Clean up everything after tests complete
 
 ## Structure
 
@@ -51,8 +36,6 @@ e2e/
 ├── cypress.config.ts           # Cypress configuration
 ├── package.json
 └── README.md
-
-# Database is managed by backend/docker-compose.test.yml (port 5433)
 ```
 
 ## Test Suites
@@ -110,12 +93,12 @@ cy.clearTestData();
 
 ## Configuration
 
-### Environment Variables
+### URLs
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `baseUrl` | `http://localhost:5173` | Frontend URL |
-| `apiUrl` | `http://localhost:5000/api` | Backend API URL |
+| Service | URL |
+|---------|-----|
+| Frontend | http://localhost:5173 |
+| Backend API | http://localhost:5001 |
 
 ### Cypress Config (`cypress.config.ts`)
 
@@ -139,14 +122,6 @@ The tests use flexible selectors that work with:
 - MUI component classes
 - Button text content
 
-If tests fail, you may need to add `data-testid` attributes to your components:
-
-```tsx
-<IconButton data-testid="edit-button" onClick={handleEdit}>
-  <EditIcon />
-</IconButton>
-```
-
 ### Database issues
 
 If the test database has issues:
@@ -159,12 +134,14 @@ cd backend && docker-compose -f docker-compose.test.yml down -v
 just e2e
 ```
 
-### Backend won't start
+### Port already in use
 
-Check if port 5000 is already in use:
+Check if port 5001 is already in use:
 
 ```bash
-lsof -i :5000
+lsof -i :5001
+just stop    # Stop all services
+just e2e     # Try again
 ```
 
 ## Test Reports
