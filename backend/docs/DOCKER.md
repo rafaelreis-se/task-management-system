@@ -31,9 +31,9 @@ docker exec -it taskmanagement-db psql -U postgres -d taskmanagement
 ```
 
 ### API
-- Port: 5000
-- Swagger: http://localhost:5000/swagger
-- Health: http://localhost:5000/health
+- Port: 5001
+- Swagger: http://localhost:5001/swagger
+- Health: http://localhost:5001/health
 
 ## Development
 

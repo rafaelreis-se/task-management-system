@@ -27,7 +27,7 @@ services:
       - JwtSettings__Secret=your-secret-key-min-32-chars-long
       - JwtSettings__ExpirationInMinutes=60
     ports:
-      - "5000:8080"
+      - "5001:8080"
     depends_on:
       postgres:
         condition: service_healthy

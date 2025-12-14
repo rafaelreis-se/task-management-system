@@ -10,7 +10,7 @@ This project was developed using GenAI tools (Cursor AI) with structured prompts
 The initial prompt provided clear context about the project requirements:
 
 ```
-Develop a Task Management System API using .NET 8, Clean Architecture, and TDD.
+Develop a Task Management System API using .NET 10, Clean Architecture, and TDD.
 Key constraints:
 - No Entity Framework, Dapper, or MediatR
 - Manual JWT authentication implementation

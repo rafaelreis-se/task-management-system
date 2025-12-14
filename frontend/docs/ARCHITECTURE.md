@@ -82,7 +82,7 @@ Simple and direct - no complex state management needed.
 
 ## API Integration
 
-Base URL: `http://localhost:5000/api`
+Base URL: `http://localhost:5001/api`
 
 **Axios interceptor** adds JWT token to requests:
 ```typescript
@@ -174,22 +174,6 @@ Avoid:
 - Deep nesting
 - God components
 - Over-engineering
-
-## Interview Focus
-
-Demonstrate:
-- Clean React code
-- TypeScript usage
-- API integration
-- Responsive design
-- Error handling
-- User experience
-
-Not needed:
-- Complex state management
-- Advanced patterns
-- Performance optimization
-- Testing (focus on working features)
 
 ## Development Approach
 

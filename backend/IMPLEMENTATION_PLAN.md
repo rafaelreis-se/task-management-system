@@ -10,7 +10,7 @@ This document outlines the implementation strategy used to build this project, d
 1. **Requirements Review**
    - Analyzed interview requirements
    - Identified constraints: No EF, Dapper, MediatR
-   - Determined tech stack: .NET 8, PostgreSQL, ADO.NET
+   - Determined tech stack: .NET 10, PostgreSQL, ADO.NET
 
 2. **Architecture Decision**
    - Selected Clean Architecture (4 layers)
@@ -383,8 +383,8 @@ services:
     - Persistent volume
   
   api:
-    - .NET 8 API
-    - Port 5000
+    - .NET 10 API
+    - Port 5001
     - Depends on postgres
     - Environment variables
 ```

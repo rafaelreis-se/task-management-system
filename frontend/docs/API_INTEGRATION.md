@@ -2,7 +2,7 @@
 
 ## Backend API Reference
 
-Base URL: `http://localhost:5000/api`
+Base URL: `http://localhost:5001/api`
 
 ## Authentication Endpoints
 
@@ -208,7 +208,7 @@ Handle these status codes:
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api'
+  baseURL: 'http://localhost:5001/api'
 });
 
 // Add token to all requests

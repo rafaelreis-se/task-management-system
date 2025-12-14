@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0-preview AS build
 WORKDIR /src
 
 COPY src/ ./
@@ -6,7 +6,7 @@ RUN dotnet restore "TaskManagement.API/TaskManagement.API.csproj"
 RUN dotnet build "TaskManagement.API/TaskManagement.API.csproj" -c Release -o /app/build
 RUN dotnet publish "TaskManagement.API/TaskManagement.API.csproj" -c Release -o /app/publish
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM mcr.microsoft.com/dotnet/aspnet:10.0-preview
 WORKDIR /app
 COPY --from=build /app/publish .
 
